@@ -1,0 +1,1044 @@
+<xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title></title>
+   
+   <link>blog.drakejin.me</link>
+   <description>데이터 분석은 잘 못하지만, 데이터 분석할 수 있게 도와드리겠어요!</description>
+   <language>utf-8</language>
+   <managingEditor> drakejin</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>(스터디) 도커.araboza - 8</title>
+	  <link>//%EC%8A%A4%ED%84%B0%EB%94%94-%EB%8F%84%EC%BB%A4-8</link>
+	  <author>drakejin</author>
+	  <pubDate>2017-05-02T00:00:00+09:00</pubDate>
+	  <guid>//%EC%8A%A4%ED%84%B0%EB%94%94-%EB%8F%84%EC%BB%A4-8</guid>
+	  <description><![CDATA[
+	     <p>[데이터 공작소] 데이터 공작소는 도커는 어떻게 공부할것인가! 처음 시작하는 도커에 대해 공부를 시작합니다.</p>
+
+<h2 id="section">서버 한 대에서 애플리케이션 배포하기</h2>
+
+<p><code class="highlighter-rouge">bash
+$ cd deploySingleServer
+</code></p>
+
+<h2 id="section-1">서버 여러 대에서 애플리케이션 배포하기</h2>
+
+<p><code class="highlighter-rouge">bash
+$ cd deployMultiServer
+</code></p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>(스터디) 도커.araboza - 7</title>
+	  <link>//%EC%8A%A4%ED%84%B0%EB%94%94-%EB%8F%84%EC%BB%A4-7</link>
+	  <author>drakejin</author>
+	  <pubDate>2017-04-24T00:00:00+09:00</pubDate>
+	  <guid>//%EC%8A%A4%ED%84%B0%EB%94%94-%EB%8F%84%EC%BB%A4-7</guid>
+	  <description><![CDATA[
+	     <p>[데이터 공작소] 데이터 공작소는 도커는 어떻게 공부할것인가! 처음 시작하는 도커에 대해 공부를 시작합니다.</p>
+
+<h2 id="dockerfile-build">Dockerfile Build</h2>
+
+<p>Dockerfile은 {명령} {매개변수} 형식으로 작성합니다. 명령은 대소문자를 구분하지 않지만
+보통 대문자로 작성한다.</p>
+
+<ul>
+  <li># 은 주석입니다.</li>
+</ul>
+
+<p>Dockerfile로 빌드할 때에는</p>
+
+<p>``` bash 
+$ sudo docker build –tag {image_name} {Dockerfiles dir}</p>
+
+<p>```</p>
+
+<p><img src="./Dockerfile" alt="Dockerfile" /></p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>(스터디) 도커.araboza - 6-2</title>
+	  <link>//%EC%8A%A4%ED%84%B0%EB%94%94-%EB%8F%84%EC%BB%A4-6-2</link>
+	  <author>drakejin</author>
+	  <pubDate>2017-04-19T00:00:00+09:00</pubDate>
+	  <guid>//%EC%8A%A4%ED%84%B0%EB%94%94-%EB%8F%84%EC%BB%A4-6-2</guid>
+	  <description><![CDATA[
+	     <p>[데이터 공작소] 데이터 공작소는 도커는 어떻게 공부할것인가! 처음 시작하는 도커에 대해 공부를 시작합니다.</p>
+
+<h2 id="docker--">Docker 데이터 볼륨</h2>
+<ul>
+  <li>Docker의 데이터 볼륨은 데이터를 컨테이너가 아닌 호스트에 저장하는 방식</li>
+  <li>데이터 볼륨은 컨테이너끼리 데이터를 공유할 때 활용할 수 있다.</li>
+  <li>Docker 컨테이너 안의 파일 변경사항은 Union File System에 의해 관리된다.</li>
+  <li>데이터 볼륨은 Union File System을 통하지 않고 바로 호스트에 저장된다.</li>
+  <li>Union File System은 docker container</li>
+  <li>데이터 볼륨 은 공유를 위한 호스트 File System!</li>
+  <li><em>즉 docker commit 명령을 통해 이미지로 생성해도 데이터 볼륨의 변경 사항은 이미지에 포함되지 않는다.</em></li>
+</ul>
+
+<h2 id="data-volume-">컨테이너 안에 data volume 만들기</h2>
+
+<p>``` bash
+$ sudo docker run -i -t –name {container_name} -v {data_volume_path} {image_name} /bin/bash</p>
+
+<h1 id="container---cd-data">container / &gt; cd /data</h1>
+<p>#container /data &gt; touce hello world
+#container /data &gt; mkdir test
+#container /data &gt; ls -ailF</p>
+
+<p>```
+ - -v {data_volume_path} =&gt; 데이터 볼륨 디렉토리를 설정하는 옵션</p>
+
+<h4 id="section">실행화면</h4>
+
+<p><img src="./images/volume.png" alt="docker volume" />
+<img src="./images/container_volumes.png" alt="docker file create" /></p>
+
+<h1 id="host---data-volume--">Host 에서 만들어진 data volume 으로 열람하기</h1>
+<p>sudo 권한이 아니고서는 만들어진 data_volume으로 탐색이 불가능하다.
+실행화면에 접근하는 디렉토리에 파일을 생성하면 컨테이너에서도 생성될것이다.</p>
+
+<ul>
+  <li>1.9버전 미만</li>
+</ul>
+
+<p><code class="highlighter-rouge">bash 
+$ sudo docker inspect -f "" hello-volume
+ </code>
+ - 1.9버전 이상</p>
+
+<p><code class="highlighter-rouge">bash
+$ sudo docker insect -f "" hello-volume 
+ </code>
+#### 실행화면(1.9 이상의 실습화면)</p>
+
+<p><img src="./images/inspect.png" alt="docker volume" />
+<img src="./images/ls.png" alt="docker ls" /></p>
+
+<h1 id="section-1">두 컨테이너와 호스트의 디렉토리를 공유하자</h1>
+<ol>
+  <li>컨테이너를 생성하고 데이터 볼륨을 설정한다. 그리고 생성된 컨테이너의 /data 디렉토리에 파일을 생성하고 빠져나온다</li>
+</ol>
+
+<p><code class="highlighter-rouge">bash
+$ sudoc docker run -it --name {container_name} -v {host_dir_path}:{container_dir_path} {image_name} /bin/bash
+</code></p>
+
+<h4 id="section-2">실행화면</h4>
+
+<p><img src="./images/share_volume.png" alt="volumes" /></p>
+
+<h1 id="section-3">볼륨 컨테이너 사용하기</h1>
+<p>데이터 볼륨 컨테이너는 데이터 볼륨을 설정한 컨테이너를 뜻함.
+일반 컨테이너에서 데이터 볼륨 컨테이너를 연결하면 데이터 볼륨 컨테이너 안의 데이터 볼륨을 디렉터리에 접근할 수 있다.</p>
+
+<p><img src="http://jam.sg/blog/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-17.47.40.png" alt="volume container" /></p>
+
+<p>``` bash
+# 호스트와 공유할 디렉토리를 하나 지정한다.
+$ sudo docker run -it –name hello-volume -v /home/likemilk/docker/data/:/data ubuntu /bin/bash
+# 컨테이너의 /data 디렉토리에 파일을 만들고 빠져나올때
+# 해동 컨테이너를 종료하면 안된다. 
+# ctrl + p =&gt; ctrl +q 로 빠져나올 수 있도록 하자.
+$ sudo docker run -it –volumes-from hello-volume –name using-volume ubuntu /bin/bash
+# –volumes-from {container_name}은 데이터 볼륨 컨테이너를 연결할 때 사용한다.</p>
+
+<p>```
+#### 실행화면</p>
+
+<p><img src="./images/container_volume.png" alt="container_volumes" /></p>
+
+<h2 id="docker-base-images-">Docker Base Images 생성하기</h2>
+<p>보통 Dockerfile로 이미지를 생성할 때 Docker Hub에서 제공하는 공식이미지를 기반으로 생성합니다. 공식이미지가 아닌 자신만의 이미지를 만들어봅시다.</p>
+
+<p>``` bash
+$ sudo apt-get install -y debootstrap
+# 부트스트랩 도구 debootstrap 을 설치한다.</p>
+
+<p>$ sudo debootstrap trusty trusty
+# debootstrap 으로 우분투 trusty 바이너리 파일을 받는다. trusy는 코드네임이다. 
+# sudo debootstrap {code_name} {dir_path}
+# 우분투 버전별 코드네임 https://wiki.ubuntu.com/DevelopmentCodeNames</p>
+
+<p>$ sudo tar -C trusty -c . | sudo docker import - trusty
+# $ sudo docker import http://example.com/trusty.tgz trusty
+# sudo docker import {URL} {image name}:{tag}
+# 또는 웹상에서 만들어진 우분투 바이너리 파일을 사용할 수 있습니다.</p>
+
+<p>$ sudo docker images 
+# 설치가 잘 되었나 확인합니다.</p>
+
+<h1 id="trusty---">임포트 한 trusty 이미지로 컨테이너를 생성합니다.</h1>
+<p>$ sudo docker run -it –name debootstrap trusty /bin/bash</p>
+
+<p>```</p>
+
+<h4 id="section-4">실행화면</h4>
+
+<p><img src="./images/apt-get.png" alt="install debootstrap" />
+<img src="./images/debootstrap.png" alt="install trusty" />
+<img src="./images/tar.png" alt="importing &amp; extract on docker" /></p>
+
+<h2 id="docker-in-docker">Docker in Docker</h2>
+
+<p>우분투 14.04 에서는 정상 동작 합니다만 CentOS 6.5 또는 7.0에서 잘 안됩니다. 커널 패닉 및 마운트 실패.. 등등.. Docker 는 1.1.2이상을 추천합니다.</p>
+
+<p>``` bash 
+$ git clone https://github.com/jpetazzo/dind
+# git hub에서 Dockerfile과bash 스크립트를 다운받아야 합니다.</p>
+
+<p>$ cd dind
+$ sudo docker build –tag dind .
+# 이미지를 생성합니다.</p>
+
+<p>$ sudo docker run -it –privileged dind
+# dind 프로젝트에서 생성한 이미지로 컨테이너를 생성합니다.
+# –privileged 옵션은 컨테이너 안에있는 호스트의 리눅스 커널 기능을 모두 사용할 수 있도록 합니다.
+# Docker in Docker 는 실험적 기능이라 로그가 기본으로 출력되도록 설정되어 있습니다. 
+# $ sudo docker run -it –privileged -e LOG=file dind
+# 로그 설정을 파일로하려면 다음과 같이 하시면 됩니다.</p>
+
+<h1 id="section-5">————- 지금은 도커안의 도커가 설치된 컨테이너에 있습니다</h1>
+<p>$ sudo docker run -it busybox:latest /bin/sh</p>
+
+<p>```</p>
+
+<h4 id="section-6">실행화면</h4>
+
+<p><img src="./images/dind.png" alt="dind" />
+<img src="./images/dind_container.png" alt="dind container" />
+<img src="./images/busybox.png" alt="busybox" /></p>
+
+<blockquote>
+  <p>컨테이너 구성은 다음과 같이 되어있습니다.
+호스트 -&gt; dind 컨테이너 -&gt; busy box 컨테이너</p>
+</blockquote>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>(스터디) 도커.araboza - 6-1</title>
+	  <link>//%EC%8A%A4%ED%84%B0%EB%94%94-%EB%8F%84%EC%BB%A4-6-1</link>
+	  <author>drakejin</author>
+	  <pubDate>2017-04-19T00:00:00+09:00</pubDate>
+	  <guid>//%EC%8A%A4%ED%84%B0%EB%94%94-%EB%8F%84%EC%BB%A4-6-1</guid>
+	  <description><![CDATA[
+	     <p>[데이터 공작소] 데이터 공작소는 도커는 어떻게 공부할것인가! 처음 시작하는 도커에 대해 공부를 시작합니다.</p>
+
+<h2 id="section">개인저장소 구축</h2>
+
+<ul>
+  <li>Docker 저장소 서버는 Docker 레지스트리(registry) 서버로 부름.</li>
+  <li>git의 push와 pull의 기능과 같다. Repository로 소스를 올리고 내려받는 역할이다.</li>
+</ul>
+
+<h2 id="docker-registry-">Docker Registry 동작</h2>
+<p>Docker Registry 서버에서 이미지를 저장하는 방법
+ 1. Docker Registry 서버에 저장하기
+ 2. Amazon S3에 저장하기</p>
+
+<h2 id="private-docker-registry-server">Private Docker Registry Server</h2>
+<ol>
+  <li>먼저 실행되고 있는 Docker 데몬을 정지한 뒤 –insecure-registry 옵션을 사용하여 Docker Daemon을 실행신다.
+    <ul>
+      <li><em>참고자료[https://forums.docker.com/t/running-an-insecure-registry-insecure-registry/8159]</em></li>
+      <li>docker -d –insecure-registry localhost:xxxx 이 부분은 docker1.8.0이후로 제한됨</li>
+      <li>docker -d 가 docker daemon으로 바뀜</li>
+    </ul>
+  </li>
+  <li>/etc/init.d/docker 를 수정한다.</li>
+</ol>
+
+<p><code class="highlighter-rouge">bash
+DOCKER_OPTS=--insecure-registry localhost:8081
+</code></p>
+
+<h4 id="section-1">실행화면</h4>
+
+<p><img src="./images/init.ddocker.png" alt="etc init.d docker" /></p>
+
+<h3 id="container-190--">Container 연결(1.9.0 미만 가능)</h3>
+<p>Docker로 이미지를 생성할 때 한 이미지에 웹 서버,DB등 필요한 프로그램을 설치하여 사용할 수 있지만
+프로그램별로 이미지를 생성하는게 일반적입니다. 그러므로 프로그램이 설치된 컨테이너로 접속할 일이 빈번하게 발생합니다.</p>
+
+<p><code class="highlighter-rouge">bash 
+$ sudo docker run --name {container_name} -d {image_name}
+</code>
+% run 명령어에서는 설치된 mongo 이미지가 존재하지 않으면 설치하고 컨테이너를 생성합니다</p>
+
+<h4 id="section-2">실행화면</h4>
+<p><img src="./images/run.png" alt="run &amp; download" /></p>
+
+<p>Docker에서 컨테이너끼리 연결하기 위해서는 docker run 명령에서 –link 옵션을 사용해야합니다.</p>
+
+<p><code class="highlighter-rouge">bash 
+$ sudo docker run --name {new_container_name} -d -p {local_port}:{container_port} --link {db_container}:{alias} {new_image}
+</code>
+% 마찬가지로 nginx 이미지가 없다면 새로 설치하고 컨테이너를 생성합니다</p>
+
+<h4 id="section-3">실행화면</h4>
+<p><img src="./images/run2.png" alt="run &amp; download" />
+<img src="./images/ps-a.png" alt="check install" /></p>
+
+<h3 id="container---190--">Container 연결이 잘 안되네?(1.9.0 이상 가능)</h3>
+<p>docker 1.12라서 그런지 위 명령어로는 아직 연결이 되지 않았다. 또한 –link는 곧 사라질 예정이기 때문에 다른 설정방법을 사용해야합니다.
+docker 에서는 1.9.0버전부터 컨테이너들간에 네트워크를 생성할 수 있는 기능이 추가되었습니다. 이 때 네트워크를 생성하고 컨테이너를 연결시키면 해당 네트워크 안에 속한 컨테이너끼리는 서로 접속할 수 있습니다.</p>
+
+<ul>
+  <li>참조링크 : https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/</li>
+</ul>
+
+<ol>
+  <li>docker network를 먼저 생성합니다.</li>
+</ol>
+
+<p><code class="highlighter-rouge">bash 
+$ sudo docker network create hello-network
+</code></p>
+
+<ol>
+  <li>db container 를 생성하면서 hello-network에 연결합니다.</li>
+</ol>
+
+<p><code class="highlighter-rouge">bash 
+$ sudo docker run --name db -d --network hello-network mongo 
+</code></p>
+
+<ol>
+  <li>web 컨테이너를 생성하면서 hello-network에 연결합니다</li>
+</ol>
+
+<p><code class="highlighter-rouge">bash
+$ sudo docker run --name web -d -p 8080:80 --network hello-network nginx
+</code></p>
+
+<ol>
+  <li>web 컨테이너에서 bash셸을 실행한 뒤에 ping을 실행해봅시다.</li>
+</ol>
+
+<p><code class="highlighter-rouge">bash
+$ sudo docker exec -it web bash
+</code></p>
+
+<h4 id="section-4">실행화면</h4>
+<p><img src="./images/network.png" alt="network1" />
+<img src="./images/network2.png" alt="network2" />
+<img src="./images/ping.png" alt="ping" /></p>
+
+<hr />
+
+<h2 id="host---host-docker--">같은 Host가 아닌 다른 Host의 Docker 컨테이너에 연결하기</h2>
+<p>앞서 설명한 –link는 연결하는 옵션이지만 1.9버전 이상일때에는 안되니 network를 구성해서 써야 합니다.</p>
+
+<h2 id="ambassador-container">임배서더 컨테이너(Ambassador Container)</h2>
+<ul>
+  <li><img src="https://docs.docker.com/engine/admin/ambassador_pattern_linking/" alt="참조링크" /></li>
+  <li>정의 : 서비스 소비자와 제공자 사이에서의 하드코딩으로 구현한 네트워크 연결들</li>
+  <li>목적 : 도커는 이식성(portability)제공을 위해 임배서더 컨테이너를 제공합니다.</li>
+  <li>설명 : 앰배서더 컨테이너는 특별한 컨테이너가 아닌 그냥 일반적인 Docker 컨테이너입니다. 앰배서더 컨테이너는 socat이라는 프로그램을 이용하여 TCP 연결을 다른 곳으로 전달하도록 구성되어 있습니다.</li>
+</ul>
+
+<h4 id="section-5">참고 이미지</h4>
+<p><img src="https://image.slidesharecdn.com/2014-07-22-docker-production-140722200529-phpapp02/95/shipping-applications-to-production-in-containers-with-docker-29-638.jpg?cb=1406059754" alt="ambassador_pattern_" /></p>
+
+<p>docker run 명령을 실행할 때 전달한 환경 변수를 이용하여 socat을 실행하는 셸 스크립트 입니다.
+``` bash 
+# ./ch06/Dockerfile</p>
+
+<p>CMD env | grep <em>TCP= | \
+    sed ‘s/.*_PORT</em>([0-9]<em>)_TCP=tcp:\/\/(.</em>):(.*)/socat \
+    TCP4-LISTEN:\1,fork,reuseaddr TCP4:\2:\3 \&amp;/’  \
+    | sh &amp;&amp; top
+```</p>
+
+<p>docker run 명령에서 –link 옵션을 주거나 -e AMB_PORT_8082_TCP=tcp://{접속할 서버의 IP및 domain}:{접속할 서버의 포트} 를 넣어서 접속할 임베서더 호스트의 주소를 입력합니다.</p>
+
+<h2 id="section-6">원격 서버에서의 작업</h2>
+
+<p>``` bash
+  # docker 다운로드 
+$ sudo apt install -y docker.io</p>
+
+<p># redis 이미지 다운로드 
+$ sudo docker pull redis:latest</p>
+
+<p># 원격서버에서 사용할 redis 컨테이너 생성
+$ sudo docker run -d –name redis redis:latest</p>
+
+<p># ambassador network생성
+$ sudo docker run -d –link redis:redis –name redis_ambassador -p {container_port}:{host_port} svendowideit/ambassador 
+```
+ - -d =&gt; 옵션으로 컨테이너를 백그라운드로 실행시킵니다.
+ - –link redis:redis =&gt; 옵션으로 redis컨테이너를 redis란 이름
+ - –name redis_ambassador =&gt; 옵션으로 컨테이너 이름을 redis_ambassador로 지정합니다.
+ - -p {container_port}:{host_port} =&gt; 서버의 도커 컨테이너 포트와 서버 호스트 포트를 연결시킵니다.
+ - svendowideit의 ambassador 이미지를 받아서 컨테이너로 생성합니다. 
+ - svendowideit은 docker 의 ambassador pattern으로 저명한 사람이다. open source 에 기여한 갓님…</p>
+
+<h2 id="section-7">로컬 서버에서의 작업</h2>
+
+<ol>
+  <li>연결하기</li>
+</ol>
+
+<p><code class="highlighter-rouge">bash
+$ sudo docker run -d --name redis_ambassador --expose {server_redis_port} -e AMB_PORT_{PORT}_TCP=tcp://211.239.***.***:{port} svendowideit/ambassador
+</code>
+ - -d =&gt; 옵션으로 컨테이너 백그라운드로 실행합니다.
+ - –name redis_ambassador =&gt; 옵션으로 컨테이너 이름을 redis_ambassador로 지정합니다.
+ - –expose {server_amb_port} =&gt; 즉 redis 클라이언트가 이 원격의 redis_ambassador 컨테이너의 포트에 접속하게 됩니다. – 
+ - –expose 옵션과 -p =&gt; –expose 옵션은 호스트의 포트를 외부에 노출하지 않습니다.<br />
+ - svendowideit 의 ambassador 컨테이너를 다운받고 실행시킵니다.</p>
+
+<ol>
+  <li>테스트 하기
+ <code class="highlighter-rouge">bash
+$ sudo docker run -i -t --rm --link redis_ambassador:redis relateiq/redis-cli
+</code>
+    <ul>
+      <li>-i -t =&gt; 옵션으로 콘솔에서 입출력을 할 수 있도록 설정합니다.</li>
+      <li>–rm =&gt; 컨테이너를 실행만하고 컨테이너를 만들지 않습니다. 이미지만 남아있는 1회성 컨테이너입니다.</li>
+      <li>–link redis_ambassador =&gt; 옵션으로 redis_ambassador 컨테이너를 redis 별칭으로 연결합니다.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>redis-cli 에 들어가 원격서버로 연결지 잘 되었는지 redis의 ping테스트를 합니다.
+ <code class="highlighter-rouge">bash 
+redis 211.239.***.***:{port} &gt; ping 
+PONG
+</code></p>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>(스터디) 도커.araboza - 5</title>
+	  <link>//%EC%8A%A4%ED%84%B0%EB%94%94-%EB%8F%84%EC%BB%A4-5</link>
+	  <author>drakejin</author>
+	  <pubDate>2017-04-18T00:00:00+09:00</pubDate>
+	  <guid>//%EC%8A%A4%ED%84%B0%EB%94%94-%EB%8F%84%EC%BB%A4-5</guid>
+	  <description><![CDATA[
+	     <p>[데이터 공작소] 데이터 공작소는 도커는 어떻게 공부할것인가! 처음 시작하는 도커에 대해 공부를 시작합니다. 이 문서의 저작권은 <img src="http://pyrasis.com/private/2014/11/30/publish-docker-for-the-really-impatient-book" alt="pyrasis.com" /> 여기에 있습니다. 혼자 공부하려고 글들의 내용을 참고하였습니다. 문제시 삭제하겠습니다.</p>
+
+<h2 id="docker-history">docker history</h2>
+<p>이미지 히스토리를 살펴보도록 하자.</p>
+
+<p><code class="highlighter-rouge">bash
+$ sudo docker history {image_name}:{tag}
+# or
+$ sudo docker history {image_id}
+</code>
+아이디 값{image_id} 또는 {image_name}:{tag}을 이용하여 설치한 이미지의 내역을 확인할 수 있다.</p>
+
+<h4 id="section">실행 화면</h4>
+
+<p><img src="./images/history.png" alt="docker history" /></p>
+
+<h2 id="docker-cp">docker cp</h2>
+<p>컨테이너 내부의 파일을 꺼내와보자.</p>
+
+<h4 id="section-1">실행 화면</h4>
+
+<p><img src="./images/cp.png" alt="docker cp" /></p>
+
+<p><code class="highlighter-rouge">bash 
+$ sudo docker cp {container_name}:{container_internal_file} {store_path}
+</code></p>
+
+<h1 id="docker-commit">docker commit</h1>
+<p>컨테이너의 변경사항을 이미지로 저장</p>
+
+<p><code class="highlighter-rouge">bash
+$ sudo docker commit -{option} "{title}" -m "{content}" {container_name} {image_name}:{tag}
+</code></p>
+
+<h4 id="section-2">실행 화면</h4>
+
+<p><img src="./images/commit.png" alt="docker commit" /></p>
+
+<h2 id="docker-diff">docker diff</h2>
+<p>commit 이후 컨테이너에서 변경된 파일 확인하기</p>
+
+<ul>
+  <li>A는 추가된 파일</li>
+  <li>C는 변경된 파일</li>
+  <li>D는 삭제된 파일</li>
+</ul>
+
+<p><code class="highlighter-rouge">bash
+$ sudo docker diff {container_name}
+</code></p>
+
+<h4 id="section-3">실행화면</h4>
+
+<p><img src="./images/diff.png" alt="docker diff" /></p>
+
+<h1 id="docker-inspect">docker inspect</h1>
+<p>컨테이너 세부정보 확인</p>
+
+<p><code class="highlighter-rouge">bash
+$ sudo docker inspect {container_name}
+</code></p>
+
+<h4 id="section-4">실행화면</h4>
+
+<p><img src="./images/inspect.png" alt="docker inspect" /></p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>(스터디) 도커.araboza - 4</title>
+	  <link>//%EC%8A%A4%ED%84%B0%EB%94%94-%EB%8F%84%EC%BB%A4-4</link>
+	  <author>drakejin</author>
+	  <pubDate>2017-04-12T00:00:00+09:00</pubDate>
+	  <guid>//%EC%8A%A4%ED%84%B0%EB%94%94-%EB%8F%84%EC%BB%A4-4</guid>
+	  <description><![CDATA[
+	     <p>[데이터 공작소] 데이터 공작소는 도커는 어떻게 공부할것인가! 처음 시작하는 도커에 대해 공부를 시작합니다. 이 문서의 저작권은 <img src="http://pyrasis.com/private/2014/11/30/publish-docker-for-the-really-impatient-book" alt="pyrasis.com" /> 여기에 있습니다. 혼자 공부하려고 글들의 내용을 참고하였습니다. 문제시 삭제하겠습니다.</p>
+
+<h2 id="docker-image-">Docker Image 만들기</h2>
+
+<h3 id="bash--">bash 기본 명령</h3>
+
+<p><img src="http://pyrasis.com/book/DockerForTheReallyImpatient/Chapter04" alt="pyraris에 있는 bash기본 명령어를 따라해봅시당" /></p>
+
+<p>기분좋게 한번 따라해봅시당</p>
+
+<h3 id="dockerfile-">DockerFile 작성하기</h3>
+
+<p><img src="http://pyrasis.com/book/DockerForTheReallyImpatient/Chapter04/02" alt="pyraris를 보고 dockerFile을 작성해봅시당" /></p>
+
+<h3 id="build----">build 명령으로 이미지를 생성해 봅시다.</h3>
+
+<p>docker image를 만들때에는 DockerFile 을 이용해야 합니다.</p>
+
+<p><code class="highlighter-rouge">
+ $ sudo docker build --tag {image_name}:{tag} {dockerfile_path}
+</code>
+ - {dockerfile_path} 이 존재하는 경로를 입력해야함.
+ -  이미지 이름만 설정하면 태그는 latest로 설정됨.</p>
+
+<h4 id="section">실행 화면</h4>
+
+<p><img src="images/sudo_docker_build.png" alt="sudo docker build" /></p>
+
+<h2 id="run--container-">생성된 이미지를 run 하여 container를 생성해봅시다.</h2>
+
+<p><code class="highlighter-rouge">bash
+ $ sudo docker run --name {container_name} -d -p {host_port}:{container_port} -v {host_dir}:{container_dir} 
+</code></p>
+
+<ul>
+  <li>-d =&gt; 컨테이너를 백그라운드로 실행한다.</li>
+  <li>-p {host_port}:{container_port} =&gt; 컨테이너의 포트와 호스트의 포트를 연결하여 외부에 노출.</li>
+  <li>-v {host_dir}:{container_dir} =&gt; 컨테이너의 디렉토리와 호스트의 디렉토리를 연결하여 호스트에서 컨테이너의 디렉토리를 읽습니다.</li>
+</ul>
+
+<h4 id="section-1">실행 화면</h4>
+
+<p><img src="images/sudo_docker_run.png" alt="sudo docker run" /></p>
+
+<p><img src="images/nginx.png" alt="sudo_docker_access" /></p>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>(스터디) 도커.araboza - 3</title>
+	  <link>//%EC%8A%A4%ED%84%B0%EB%94%94-%EB%8F%84%EC%BB%A4-3</link>
+	  <author>drakejin</author>
+	  <pubDate>2017-04-08T00:00:00+09:00</pubDate>
+	  <guid>//%EC%8A%A4%ED%84%B0%EB%94%94-%EB%8F%84%EC%BB%A4-3</guid>
+	  <description><![CDATA[
+	     <p>[데이터 공작소] 데이터 공작소는 도커는 어떻게 공부할것인가! 처음 시작하는 도커에 대해 공부를 시작합니다. 이 문서의 저작권은 <img src="http://pyrasis.com/private/2014/11/30/publish-docker-for-the-really-impatient-book" alt="pyrasis.com" /> 여기에 있습니다. 혼자 공부하려고 글들의 내용을 참고하였습니다. 문제시 삭제하겠습니다.</p>
+
+<h2 id="section">도커 기본 명령어</h2>
+
+<p>docker 명령어는 sudo 명령어와 함께하거나 root사용자로 이용해야 합니다.</p>
+
+<h3 id="search">search</h3>
+<p>search명령어로 docker hub에 올라와있는 이미지를 검색하기 <img src="https://registry.hub.docker.com" alt="docker hub" />에 유명 이미지들은 {user}/{image}이런 형식이 아니라 {image}명만 있습니다.</p>
+
+<p><code class="highlighter-rouge">bash
+ $ sudo docker search {image_name}
+</code></p>
+
+<h6 id="section-1">실행 화면</h6>
+<p><img src="images/sudo_docker_search.png" alt="sudo docker search" /></p>
+
+<h3 id="pull">pull</h3>
+<p>pull 명령어는 dockerhub에 있는 이미지를 다운받는데 사용합니다.</p>
+
+<p><code class="highlighter-rouge">bash
+ $ sudo docker pull {image_name}:{tag}
+</code>
+tag자리에 latest를 입력하면 이미지의 최신버전을 다운받습니다. 
+- <img src="https://hub.docker.com/r/library/ubuntu/tags/" alt="docker tags" />
+위 링크에서 tag 자리에 올 적합한 버전을 찾아서 입력하면 해당 tag 버전으로 설치할 수 있습니다.</p>
+
+<h5 id="section-2">실행 화면</h5>
+<p><img src="images/sudo_docker_pull.png" alt="sudo docker pull iamges_name_tag" /></p>
+
+<h3 id="images">images</h3>
+<p>다운받은 이미지 목록 출력하기</p>
+
+<p><code class="highlighter-rouge">
+ $ sudo docker images 
+</code> 
+위 명령은 모든 이미지 목록을 출력합니다.</p>
+
+<h5 id="section-3">실행화면</h5>
+
+<p><img src="images/sudo_docker_images.png" alt="sudo docker images" /></p>
+
+<h3 id="run">run</h3>
+<p>컨테이너 생성하는 명령어, 다운 받은 이미지를 기반으로 컨테이너를 만듭니다.</p>
+
+<p><code class="highlighter-rouge">bash
+$ sudo docker run -i -t --name {container_name} {image_name} {login_shell}
+</code>
+ - -i : Interactive =&gt; 실행된 셸의 입출력을 사용합니다.
+ - -t : Pseudo-tty =&gt; 로그인 셸을 어떤걸 사용할 지 정합니다.
+ - –name : 컨테이너의 이름을 지정합니다, 이를 설정하지 않으면 도커에서 임의로 설정하게 됩니다.</p>
+
+<p>이 과정을 통해 호스트 OS와 완전히 격리된 공간이 생기게 되었습니다.</p>
+
+<blockquote>
+  <p>빠져나오기 
+- ctrl + p &amp; ctrl + q =&gt; 해당 컨테이너를 종료하지 않고 나옵니다.
+- exit : 해당 컨테이너를 종료하고 나옵니다.</p>
+</blockquote>
+
+<h5 id="section-4">실행화면</h5>
+
+<p><img src="images/sudo_docker_run.png" alt="sudo docker run -i -t --name" /></p>
+
+<h3 id="ps">ps</h3>
+<p>컨테이너의 목록 확인하기</p>
+
+<p><code class="highlighter-rouge">bash
+$ sudo docker ps -a 
+</code>
+-a옵션은 정지된 컨테이너 까지 모두 출력하고, 옵션을 사용하지 않으면 컨테이너만 출력합니다.</p>
+
+<h5 id="section-5">실행화면</h5>
+
+<p><img src="images/sudo_docker_ps.png" alt="sudo docker ps" /></p>
+
+<h3 id="start">start</h3>
+<p>정지된 컨테이너를 구동시킬 때 사용한다.</p>
+
+<p><code class="highlighter-rouge">bash
+ $ sudo docker start {container_name}
+</code></p>
+
+<h5 id="section-6">실행화면</h5>
+
+<p><img src="images/sudo_docker_start.png" alt="sudo docker start" /></p>
+
+<h3 id="stop">stop</h3>
+<p>실행된 컨테이너를 정지 시킬 때 사용한다.</p>
+
+<p><code class="highlighter-rouge">bash
+ $ sudo docker stop {container_name} 
+</code></p>
+
+<h5 id="section-7">실행화면</h5>
+
+<p><img src="images/sudo_docker_stop.png" alt="sudo_docker_stop" /></p>
+
+<h3 id="restart">restart</h3>
+
+<p>실행된 컨테이너를 재구동 하기위해 사용한다.</p>
+
+<p><code class="highlighter-rouge">bash
+ $ sudo docker restart {container_name}
+</code></p>
+
+<h5 id="section-8">실행화면</h5>
+
+<p><img src="images/sudo_docker_restart.png" alt="sudo docker restart" /></p>
+
+<h3 id="attach">attach</h3>
+<p>실행된 컨테이너에 접속하기위해 사용한다.
+<code class="highlighter-rouge">bash
+ $ sudo docker attach {container_name}
+</code></p>
+
+<h5 id="section-9">실행화면</h5>
+
+<p><img src="images/sudo_docker_attach.png" alt="sudo docker attach" /></p>
+
+<h3 id="exec">exec</h3>
+<p>실행된 컨테이너에 접속하지않고 명령어를 수행하기 위해 사용한다. 결과창은 Host OS 에서 확인 할 수 있다.</p>
+
+<p><code class="highlighter-rouge">bash
+ $ sudo docker exec {container_name} [arg[0], arg[1], arg[2], arg[3]]
+</code></p>
+
+<h5 id="section-10">실행화면</h5>
+
+<p><img src="images/sudo_docker_exec.png" alt="sudo docker exec" /></p>
+
+<h3 id="rm">rm</h3>
+<p>생성된 컨테이너를 삭제한다. 실행되고 있는 컨테이너는 제거할 수 없다.</p>
+
+<p><code class="highlighter-rouge">bash
+ $ sudo docker rm {container_name}
+</code></p>
+
+<h5 id="section-11">실행화면</h5>
+
+<p><img src="images/sudo_docker_rm.png" alt="sudo_docker_rm" /></p>
+
+<h3 id="rmi">rmi</h3>
+<p>설치한 이미지를 삭제한다. 단 삭제하려는 이미지로 생성한 컨테이너가 사용중이거나 만들어져있다면 삭제할 수 없다. 
+<code class="highlighter-rouge">bash
+ $ sudo docker rmi {image_name}:{tag}
+</code></p>
+
+<h5 id="section-12">실행화면</h5>
+
+<p><img src="images/sudo_docker_rmi.png" alt="sudo_docker_rmi" /></p>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>(스터디) 도커.araboza - 2</title>
+	  <link>//%EC%8A%A4%ED%84%B0%EB%94%94-%EB%8F%84%EC%BB%A4-2</link>
+	  <author>drakejin</author>
+	  <pubDate>2017-04-07T00:00:00+09:00</pubDate>
+	  <guid>//%EC%8A%A4%ED%84%B0%EB%94%94-%EB%8F%84%EC%BB%A4-2</guid>
+	  <description><![CDATA[
+	     <p>[데이터 공작소] 데이터 공작소는 도커는 어떻게 공부할것인가! 처음 시작하는 도커에 대해 공부를 시작합니다. 이 문서의 저작권은 <img src="http://pyrasis.com/private/2014/11/30/publish-docker-for-the-really-impatient-book" alt="pyrasis.com" /> 여기에 있습니다. 혼자 공부하려고 글들의 내용을 참고하였습니다. 문제시 삭제하겠습니다.</p>
+
+<h1 id="section">설치하기</h1>
+
+<p>Docker는 MAC OS, Windows, Linux(Debian, RedHat)양 진영에 제공한다.</p>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>(스터디) 도커.araboza - 1</title>
+	  <link>//%EC%8A%A4%ED%84%B0%EB%94%94-%EB%8F%84%EC%BB%A4-1</link>
+	  <author>drakejin</author>
+	  <pubDate>2017-04-04T00:00:00+09:00</pubDate>
+	  <guid>//%EC%8A%A4%ED%84%B0%EB%94%94-%EB%8F%84%EC%BB%A4-1</guid>
+	  <description><![CDATA[
+	     <p>[데이터 공작소] 데이터 공작소는 도커는 어떻게 공부할것인가! 처음 시작하는 도커에 대해 공부를 시작합니다. 이 문서의 저작권은 <img src="http://pyrasis.com/private/2014/11/30/publish-docker-for-the-really-impatient-book" alt="pyrasis.com" /> 여기에 있습니다. 혼자 공부하려고 글들의 내용을 참고하였습니다. 문제시 삭제하겠습니다.</p>
+
+<h1 id="section">컨테이너의 필요성</h1>
+
+<ul>
+  <li>클라우드환경에서 서버는 클릭 몇번으로 만들어 내지만 서버의 환경(설치해야하는 각종 DB 등등..) 을 클릭으로 만들어 낼 수 없었다.</li>
+  <li>환경은 OS가 무엇이냐에 따라 설치방법이 달라지고.. 새로 구매한 서버에서 운영환경을 만드는것은 고된 작업중 하나..</li>
+  <li>셸 스크립트로 만들어내는것에도 한계가 있다. 셸 스크립트로 중앙 관리 기능이나 복잡한 관리 기능 구현은 힘듦.</li>
+  <li>관리해야할 서비스 프로그램이 많아지고.. 설정도 복잡해지고…</li>
+  <li>그리고 배포 및 관리를 하는대 서버를 통째로 이미지로 만들어서 올리는것이 좀 더 편리해서 서버를 통째로 샀다가 지우는 경우가 생김</li>
+  <li>그러므로 이미지 기반 어플리케이션 배포 패러다임이 등장 (Immutable-infrastructure)</li>
+</ul>
+
+<h4 id="immutable-infrastructure-httpblognacyotcomarticles2014-04-06-immutable-infrastructure"><img src="http://blog.nacyot.com/articles/2014-04-06-immutable-infrastructure/" alt="Immutable Infrastructure 패러다임" /></h4>
+<ul>
+  <li>이미지 기반 어플리케이션 배포 패러다임</li>
+  <li>한 번 설정하고 변경하지 않는 이미지 기반의 어플리케이션 배포 패러다임을 뜻함.</li>
+  <li>다수의 서버를 동적으로 관리하는 클라우드를 기반으로 효과적이고 유연하게 배포할 수 있을까에 시작함</li>
+  <li>기존에 서버를 지속적으로 관리 하는것에 벗어나 어떻게 해야 서버를 잘 쓰고 버리는지가 관건인 패러다임.</li>
+  <li>Heroku, Travis에서 이 페러다임을 적극 채용하고 있으며 docker와 serf 같은 도구들은 이 패러다임의 적용을 돕는다.</li>
+  <li>호스트 OS와 서비스 운영환경(소스코드, 프로그램, 컴파일된 바이너리)를 분리하고, 한 번 설정한 운영 환경은 변경하지 않음</li>
+</ul>
+
+<h4 id="immutable-infrastructure-">Immutable-infrastructure 장점</h4>
+<ul>
+  <li>관리 용이 : 서비스 운영환경을 이미지로 생성했기 때문에 이미지만 관리하면 됨, docker에서 이미지를 중앙관리 할 것임.</li>
+  <li>확장성 : 이미지 하나로 서버를 계속 만들어 낼 수 있다. 클라우드 플랫폼의 자동확장 시능과 함께라면 손쉽게 확장할 수 있다.</li>
+  <li>테스트 : 개발자의 PC나 테스트 서버에서 이미지를 실행하기만 하면 서비스 운영 환경과 동일한 환경이 구성되기 때문에 테스트가 쉽다.</li>
+  <li>가볍다 : OS에 딸려있는 쓰잘때기 없는 기능들을 안써도 된다.</li>
+</ul>
+
+<h1 id="docker-">가상머신과 Docker의 컨테이너</h1>
+
+<h4 id="section-1">가상머신</h4>
+<ul>
+  <li>가상머신은 완전한 컴퓨터라 항상 <em>게스트 OS</em>를 설치해야 한다. 그래서 이미지 안에 OS가 포함되기 때문에 이미지 용량이 커진다.</li>
+  <li>게스트 OS는 넘나 무겁다. 전 가상화 방식의 느린 속도를 개선하기 위해 반 가상화를 내 놓았지만, 반 가상화라는것도 도찐개찐 무겁당.</li>
+</ul>
+
+<h4 id="docker">Docker</h4>
+<ul>
+  <li>Docker는 반 가상화보다 경량화된 방식. 게스트 OS를 설치하지 않음. Docker이미지에 서버 운영을 위한 프로그램과 라이브러리를 격리해서 설치할 수 있다.</li>
+  <li>하드웨어를 가상화하는 계층(Hyper-V)이 없기 때문에 메모리 접근, 파일시스템, 네트워크 속도가 가상머신에 비해 월등히 빠름</li>
+  <li>메인 호스트와 Docker의 컨테이너 사이의 계층과 성능차이는 크게 발생하지 않는다.</li>
+</ul>
+
+<h4 id="vs-docker-">가상머신 vs Docker 비교</h4>
+<p><img src="http://patg.net/assets/container_vs_vm.jpg" alt="가상머신 vs Docker" /></p>
+
+<h4 id="xen-hyper-v">반가상화(Xen, Hyper-V)</h4>
+<p><img src="http://cfile24.uf.tistory.com/image/2514094E52693DA31D9518" alt="반 가상화" /></p>
+
+<h4 id="chroot-jail">chroot와 jail</h4>
+<ul>
+  <li>chroot라는 명령을 이용한 방식. 파일 시스템에서 루트 디렉터리를 변경하는 명령</li>
+  <li>chroot는 jail이라는 환경을 생성하는대 chroot jail안에서는 바깥의 파일과 디렉토리에 접근할 수 없다.</li>
+  <li>chroot디렉토리 경로를 격리하기 때문에 서버정보의 유출과 피해를 최소화 하는데 주로 사용함</li>
+  <li>chroot는 jail에 들어갈 실행파일과 공유라이브러리를 직접 준비해야하고 설정방법이 조금 복잡함.</li>
+  <li>완벽한 가상머신이 아님</li>
+  <li>이후 리눅스는 LXC(LinuX Container)라는 시스템 레벨의 가상화를 제공했다.
+<img src="https://debcairn.files.wordpress.com/2014/08/chrooted_fig1.gif" alt="chroot에 대해 아라보쟈" /></li>
+</ul>
+
+<h4 id="linux-container-compose-of-cgroups-namespaces">리눅스 컨테이너-1 (LinuX Container compose of cgroups&amp; namespaces)</h4>
+<ul>
+  <li>LXC 는 컴퓨터를 통째로 가상화 하여 OS를 실행하는게 아닌 리눅스 커널레벨에서 제공하는 일종의 격리(isolate)된 가상의 공간.</li>
+  <li>이 가상의 공간이 바로 컨테이너이다.</li>
+  <li>리눅스 커널의 Control Groups(cgroups)는 CPU, 메모리, 디스크, 네트워크 자원을 할당하여 완전한 형태의 가상공간을 제공하게 됨</li>
+  <li>프로세스 트리, 사용자 계졍, 파일 시스템, IPC등을 격리 시킨 호스트와 별개의 공간. 이를 Namespace Isolation(namespaces)라 부름</li>
+  <li>LXC는 격리된 공간을 제공할 뿐, 서비스 운영에 필요한 기능이 부족했다.
+<img src="https://image.slidesharecdn.com/lxcnextgenvirtualizationforcloud-introcloudexpo-140613044826-phpapp01/95/lxc-next-gen-virtualization-for-cloud-intro-cloudexpo-4-638.jpg?cb=1402634985" alt="LXC에 대해 알아보자" /></li>
+</ul>
+
+<h4 id="add-libcontainer">리눅스 컨테이너-2 (Add libcontainer)</h4>
+<ul>
+  <li>도커 초기에는 LXC를 기반으로 구현했지만 LXC 를 대신하는 libcontainer를 개발하여 사용하고 있다.</li>
+  <li>내부적으로는 실행드라이버(exec driver)라 한다. 이게 도커</li>
+  <li>libcontainer는 native 표시</li>
+  <li>LXC는 lxc로 표시
+<img src="https://cdn-images-1.medium.com/max/1200/1*E8KZJNl21-f1Fb93zgwPWA.jpeg" alt="libcontainer" />
+<img src="http://www.publickey1.jp/blog/14/docker09.jpg" alt="냠냠 " /></li>
+</ul>
+
+<h1 id="section-2">이미지와 컨테이너의 차이</h1>
+
+<h4 id="section-3">이미지</h4>
+<ul>
+  <li>리눅스 배포판의 유저랜드만 설치된 파일</li>
+  <li>보통 리눅스 배포판 이름으로 되어있다.</li>
+  <li>Redis나 Nginx등 설치된 베이스 이미지도 있다.</li>
+  <li>즉, 필요한 라이브러리, 바이너리, 소스코드가 설치된 뒤 파일 하나로 묶인 것.</li>
+  <li>이미지는 베이스 이미지, 애플리케이션(베이스 이미지가 사용된 것)으로 구분할 수 있다.</li>
+  <li>실행할 때에는 베이스이미지에서 바뀐 부분(애플리케이션에서 변경된 부분)을 합쳐서 실행함.</li>
+  <li>유저랜드 = 실행파일 + 라이브러리</li>
+  <li>유저랜드 = 리눅스 부팅에 필요한 최소 실행파일과 라이브러리 조합(고유의 패키징 시스템을 포함)
+<img src="https://image.slidesharecdn.com/webinarrealworlddocker2014-12-09v31-141209161210-conversion-gate01/95/realworld-docker-10-things-weve-learned-28-638.jpg?cb=1461786358" alt="updated base image " />
+<img src="http://pyrasis.com/assets/images/DockerForTheReallyImpatientChapter01/10.png" alt="흑" />
+<img src="https://i.stack.imgur.com/IsRzv.png" alt="Change and Update" />
+##### 이미지 의존성
+<img src="http://blog.kollus.com/wp-content/uploads/2015/10/docker_images.gif" alt="이미지 의존성" /></li>
+</ul>
+
+<h4 id="section-4">컨테이너</h4>
+<ul>
+  <li>이미지를 실행한 상태.</li>
+  <li>이미지로 여러개의 컨테이너를 만들 수 있다.</li>
+  <li>운영체제로 보면 이미지는 실행파일, 컨테이너는 프로세스</li>
+  <li>즉, Docker는 특정 실행파일 또는 스크립트를 위한 실행 환경</li>
+</ul>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>(스터디) 도커.araboza - Intro</title>
+	  <link>//%EC%8A%A4%ED%84%B0%EB%94%94-%EB%8F%84%EC%BB%A4-intro</link>
+	  <author>drakejin</author>
+	  <pubDate>2017-04-02T00:00:00+09:00</pubDate>
+	  <guid>//%EC%8A%A4%ED%84%B0%EB%94%94-%EB%8F%84%EC%BB%A4-intro</guid>
+	  <description><![CDATA[
+	     <p>[데이터 공작소] 데이터 공작소는 도커는 어떻게 공부할것인가! 처음 시작하는 도커에 대해 공부를 시작합니다.</p>
+
+<h2 id="section">도커에 대해 공부해보자.</h2>
+
+<p><img src="/assets/posts/res/2017-04-02/docker.png" alt="docker logo" /></p>
+
+<ul>
+  <li>도커는 2013년 docker.inc에서 출시한 <em>오픈소스 컨테이너</em> 프로젝트</li>
+  <li>AWS, Google Cloud Platform, Azure 에서 공식 지원중</li>
+</ul>
+
+<h2 id="section-1">도커 장점</h2>
+
+<ul>
+  <li>복잡한 리눅스 어플리케이션을 컨테이너로 묶어서 실행할 수 있음</li>
+  <li>개발, 테스트, 서비스 환경을 통일하여 효율적으로 관리할 수 있음</li>
+  <li><em>컨테이너(이미지)</em>를 전세계 사람들과 공유할 수 있음</li>
+</ul>
+
+<h2 id="section-2">컨테이너란?</h2>
+
+<ul>
+  <li>가상화보다 훨씬 가벼운 가상화 기술</li>
+  <li>리눅스 안에 있는 컨테이너 기술을 이용하여 가상공간을 만든다.</li>
+  <li>하지만 그 만들어진 공간안에 실행파일은 호스트에서 직접 실행한다.</li>
+  <li>이 컨테이너 기술은 리눅스의 cgroups 와 namespaces가 제공하는 기술</li>
+  <li>어찌 보면 컨테이너는 가상화가 아닌 격리의 개념과도 같다.</li>
+  <li>컨테이너에 대한 내용은 아래 링크를 반드시 참조한다.</li>
+  <li><a href="http://opennaru.tistory.com/105">도커 가상화의 원리와 장단점</a></li>
+</ul>
+
+<h2 id="section-3">가상화란?</h2>
+
+<ul>
+  <li>우리가 이용하는 VPS호스팅 임대 서비스들은 가상화를 이용한 클라우드 서비스</li>
+  <li>컴퓨터 안에서 컴퓨터를 만들어내기 위한 시도</li>
+  <li>1960년대에 가상화라는 개념이 처음 등장</li>
+  <li>컴퓨터 성능이 좋아지면서 PC에서도 사용함.</li>
+  <li>맥에서 윈도우를 설치하여 뱅킹을 하는것 처럼…</li>
+  <li>개인 컴퓨터의 성능이 좋아짐과 동시에 서버 컴퓨터의 성능 또한 더불어 좋아짐.</li>
+  <li>서버에서 서비스를 운영하면 운영되고 있는 어플리케이션이 소모하는 자원말고 아무것도 사용하고 있지 않음.</li>
+  <li>그렇다고 Scale out과 활용 사이에 갈등.</li>
+  <li>그렇다면 서버에 가상머신을 띄워서 놀고 있는 자원을 효율적으로 사용해보자!</li>
+  <li>환경에 의존하여 인스톨하지 않고, 이미지를 인스톨하면 즉시 이용 가능할 수 있는 장점이 있음.</li>
+  <li>하지만 가상화에는 단점들이 존재함, OS를 아예 만들어내기 때문에 자원낭비를 불러옴.</li>
+  <li>심지어 AMD나 Intel CPU에 가상화 기능을 넣었는대도 자원낭비가 생기고 느리기 까지 함</li>
+  <li>그래서 호스트와 커널을 공유하는 반 가상화 기술이 등장했다.</li>
+  <li>이러나 저러나 가상머신은 느리다.</li>
+  <li>가상머신은 항상 완전한 컴퓨터를 설치해야한다. 그렇기 때문에 항상 guest OS를 설치해야만 한다.</li>
+  <li>이미지 안에 OS가 포함되기 때문에 이미지 용량이 커진다.</li>
+  <li>네트워크로 가상화 이미지를 주고 받는건 부담스러움</li>
+  <li>오픈소스 가상화 소프트웨어는 OS가상화에만 주력(배포와 관리 기능이 부족)</li>
+  <li>이런 단점으로 인하여 컨테이너 기술이 나옴. (리눅스 컨테이너)</li>
+</ul>
+
+<h3 id="section-4">컨테이너(이미지) 공유 서비스</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>- *컨테이너* 기술은 리눅스 커널에서 제공해줌
+- Github과  비슷한 방식의 docker hub란게 존재하여 공유함
+</code></pre>
+</div>
+
+<h3 id="section-5">컨테이너와 이미지의 차이점</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>- 이미지 
+    1. 서비스 운영에 필요한 서버 프로그램, 소스코드, 컴파일된 실행파일을 묶은 형태 
+    2. 저장소에 올리고 받는것은 이미지 : push and pull
+
+- 컨테이너
+    1. 컨테이너는 이미지를 이미 실행한 형태
+    2. 이미지로 여러개의 컨테이너를 만들 수 있다.
+
+- 즉, 운영체제 측면으로 본다면 이미지는 실행파일, 컨테이너는 프로세스 
+</code></pre>
+</div>
+
+<h2 id="section-6">도커의 특징</h2>
+
+<ul>
+  <li>도커는 게스트 OS를 설치하지 않는다.</li>
+  <li>이미지에 서버 운영을 위한 프로그램과 라이브러리만 격리해서 설치</li>
+  <li>이미지 용량이 크게 줄어든다.</li>
+  <li>호스트와 OS자원을 공유(시스템 콜들..)</li>
+  <li><em>도커는 하드웨어 가상화 계층이 존재하지 않음</em>(메모리접근, 파일접근 등등 관련한 기능에서 가상화보다 빠른 성능을 보여줌)</li>
+  <li>이미지 생성과 배포에 특화됨</li>
+  <li>이미지 버전관리 제공한다. 중앙저장소에 이미지를 올리고 받을 수 있다 (push/ pull)과정</li>
+  <li>Github과 비슷한 형태의 서비스인 docker hub가 존재한다.</li>
+  <li>다양한 API를 사용하여 원하는 만큼 자동화가 가능함, 개발과 서버운용에 매우 유용함.</li>
+</ul>
+
+<h3 id="section-7">도커의 버전관리(이미지 처리 방식)</h3>
+
+<ul>
+  <li>유니온 파일 시스템 형식 (aufs, btrfs, devicemapper)</li>
+  <li>도커 베이스 이미지에서 바뀐부분만 이미지로 생성</li>
+  <li>컨테이너로 실행할 때는 베이스 이미지와 바뀐부분을 합쳐서 실행</li>
+  <li>즉, Docker Hub 및 개인 저장소에서 이미지를 공유할 때, 바뀐부분만 주고 받음</li>
+  <li>각 이미지는 매 버전마다 의존관계를 가지게(형성하게) 됨</li>
+</ul>
+
+<h3 id="section-8">서비스 운영환경에서 도커를 적용하기 이전의 상황</h3>
+
+<ul>
+  <li>지금까지는 물리적인 서버를 직접 운영하는 방식이었음.</li>
+  <li>호스팅 또는 IDC코로케이션 서비스 이용</li>
+  <li>이전까지는 서버 구입과 운영까지 많은 비용이 소모되고 시간이 오래걸렸다.</li>
+  <li>가상화가 발전하면서 클라우드 환경으로 변화</li>
+  <li>가상 서버를 임대하여 이용한 만큼 돈을 지불하는 방식이었음</li>
+  <li>단순한 클릭 몇번으로 서버가 생성되었다.</li>
+  <li>이제는 자동으로 서버를 생성하고 삭제까지도 할 수 있게 되었다.</li>
+  <li>현재는 서버 대수가 많아지게되면서 관리하기가 힘들어지게 됨</li>
+  <li>그렇다면 많아진 서버 대수를 어떻게 셋팅하고 배포를 하게 될 것인가?</li>
+  <li>이 많아진 서버 대수를 관리하기위한 서버관리 측면의 패러다임이 나오게 됨.</li>
+  <li>Immutable Infrastructure 라는 패러다임이 나옴</li>
+</ul>
+
+<h3 id="immutable-infrastructure">Immutable Infrastructure</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>- 호스트 OS와 서비스 운영 환경(서버 프로그램, 소스코드, 컴파일된 바이너리)들을 분리하여 
+- 한번 설정한 서버환경은 변경하지 않는다.(Immutable) 개념
+- 서비스 운영환경을 이미지로 생성한 뒤 서버에 배포하여 실행
+- 서비스가 업데이트 되면 운영환경 자체를 변경하지 않고, 이미지를 새로 생성하여 배포함.
+- 클라우드 플랫폼에서 서버를 쓰고 버리는것과 같이 Immutable Infrastructure도 서비스 운영환경 이미지를 한번 쓰고 버림
+</code></pre>
+</div>
+
+<h3 id="immutable-infrastructure-">Immutable Infrastructure의 장점</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>- 편리한 관리
+    - 서비스 환경 이미지만 관리하면 된다.
+    - 중앙관리를 통한 배포와 관리
+    - 이미지 생성에 버전관리 시스템 활용 
+
+- 확상정
+    - 이미지 하나로 서버를 계속해서 찍어낼 수 있음
+    - 클라우트 플랫폼의 자동확장(Auto Scaling)기능와 연동하여 손쉽게 서비스를 확장할 수 있다.
+
+- 테스트
+    - 개발자 PC또는 테스트 서버에서 이미지를 실행하면 서비스 운영환경과 동일한 환경이 구축됨
+    - 테스트가 간편해진다.
+
+- 가벼움
+    - 운영체제와 서비스환경을 분리하여 가볍고 어디서나 실행가능한 환경을 제공할 수 있다. 
+</code></pre>
+</div>
+
+<h3 id="immutable-infrastructure---">즉, 도커는 Immutable Infrastructure를 구현한 프로젝트 이다.</h3>
+
+<h3 id="section-9">도커의 로고</h3>
+<ul>
+  <li>고래</li>
+  <li>컨테이너를 싣고 다니는 고래</li>
+  <li>고래는 서버에서 여러 개의 컨테이너(이미지)를 실행하고 이미지 저장과 배포(운반)을 의미</li>
+  <li>Docker는 부두 노동자를 의미함, 컨테이너를 다루는 도커의 기능과 비슷함.</li>
+  <li>Build, Ship, Run 도커는 서비스 운영환경을 묶어서 손 쉽게 배포하고 실행하는 경량컨테이너 기술</li>
+</ul>
+
+<h2 id="section-10">설치</h2>
+
+<p>``` bash</p>
+
+<p>$ sudo apt-get install update
+$ sudo apt-get install docker.io -y
+# 최신 바이너리를 설치하고 싶다면
+# 참고링크 1번 프레젠테이션의 91페이지를 참고하세요.
+```</p>
+
+<h2 id="section-11">참고 링크</h2>
+<ul>
+  <li><img src="https://www.slideshare.net/pyrasis/docker-fordummies-44424016" alt="유명한 도커 입문 슬라이드" /> 완전히 배낌.</li>
+  <li><img src="https://docs.docker.com/machine/install-machine/#installing-machine-directly" alt="boot2docker" /> 마지막부분 내용 좋음</li>
+</ul>
+
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>
