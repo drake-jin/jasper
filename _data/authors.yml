@@ -1,0 +1,17 @@
+drakejin:
+    nickname: 'drakejin'
+    name: "조용진"
+    bio: 'IT 쪽은 데이터 처리&가공분야에 관심이 있고, 취미는 기타입니당. '
+    location: 'Seoul, Korea'
+    image: '/assets/images/authors/drakejin.jpg'
+    url: 'http://blog.drakejin.me'
+    short_url: 'blog.drakejin.me'
+casper:
+    nickname: 'casper'
+    name: "Default Data"
+    bio: 'TODO: Bio'
+    location: 'Ghostland'
+    image: '/assets/images/authors/casper.png'
+    url: 'http://www.example.com/'
+    short_url: 'example.com'
+

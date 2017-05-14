@@ -1,0 +1,1249 @@
+<xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title></title>
+   
+   <link></link>
+   <description>데이터 분석은 잘 못하지만, 데이터 분석할 수 있게 도와드리겠어요!</description>
+   <language>utf-8</language>
+   <managingEditor> drakejin</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>(스터디) 하둡.araboza - 6</title>
+	  <link>//%EC%8A%A4%ED%84%B0%EB%94%94-%ED%95%98%EB%91%A1-6</link>
+	  <author>drakejin</author>
+	  <pubDate>2017-05-08T00:00:00+09:00</pubDate>
+	  <guid>//%EC%8A%A4%ED%84%B0%EB%94%94-%ED%95%98%EB%91%A1-6</guid>
+	  <description><![CDATA[
+	     <p>[데이터공작소] 하둡의 WordCount 예제가 아닌 약간의 응용을 해보는 예제를 체험합니다.</p>
+
+<h2 id="section">소스 위치</h2>
+<ul>
+  <li><img src="https://github.com/drake-jin/hadoop-study/tree/master/week06" alt="Chapter06의 소스코드" /></li>
+  <li>이클립스에서 작업하였고 실행하기위해서는 maven project import 기능을 사용해 주세요.</li>
+</ul>
+
+<h2 id="chapter-06">Chapter 06</h2>
+<ul>
+  <li>본 챕터는 소스 코드를 참고하면서 이용해주시기 바랍니다.</li>
+  <li>소스코드의 설명은 주석으로 달아놓았습니다.</li>
+</ul>
+
+<h2 id="section-1">위키피디아</h2>
+<ul>
+  <li>위키피디아는 집단지성의 정보를 대표로하는 서비스로써 사용자들의 참여가 우선시 되는 서비스이다.  위키피디아를 크롤링하거나 스크랩핑하는곳이 많아서 그냥 데이터베이스를 덤프로 제공하기도 한다.</li>
+  <li><img src="http://download.freebase.com/wex/2012-07-01/freebase-wex-2012-07-0-articles.tsv.bz2" alt="위키피디아 가공 문서" /></li>
+</ul>
+
+<h2 id="section-2">프리베이스</h2>
+<ul>
+  <li><img src="http://download.freebase.com/wex/" alt="프리베이스" /></li>
+  <li>프리베이스는 자신의 커뮤니티의 구성원들이 업로드한 데이터들로 구성된 대규모 지식 베이스(온라인에 최적화된 Data들)</li>
+  <li>음악,TV, 영화, 인물, 회사,책 영문버전으로 존재함</li>
+</ul>
+
+<h2 id="section-3">트러블 슈팅</h2>
+<ul>
+  <li>hdfs의 파일을 /tmp에 저장했을 경우 리부팅을 할 경우에</li>
+</ul>
+
+<h3 id="section-4">구현할 프로그램</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>예제프로그램</th>
+      <th>기능</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>WordCount2</td>
+      <td>기존 WordCount를 개량한것</td>
+    </tr>
+    <tr>
+      <td>TopN</td>
+      <td>빈도수 기준으로 최대의 N개의 레코드들을 뽑는다.</td>
+    </tr>
+    <tr>
+      <td>CountTrigram</td>
+      <td>트라이그램별로 빈도수를 계산하고 바로 TopN을 실행하여 빈도수가 높은 트라이그램을 보여줍니다.</td>
+    </tr>
+    <tr>
+      <td>CountCitation</td>
+      <td>200만개의 영문 위키피디아 문서들에 대해서 각기 인용된 숫자를 보여준다. WordCount와 흡사하다.</td>
+    </tr>
+    <tr>
+      <td>JoinIDTitle</td>
+      <td>CountCitation의 결과에 TopN을 적용하여 가장 많이 인용된 문서 10개의 문서를 알아낸 후에 JoinIDTitle을 이용해서 그 문서들의 타이틀을 알아낼 수 있다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="wordcount2">WordCount2</h1>
+<ul>
+  <li>WordCount와 WordCount2는 3가지가 개선되었다.
+    <ol>
+      <li>데이터의 크기가 다르다.</li>
+      <li>문서형식은 문서 ID와 ID에 대한 텍스트가 들어가는 형태</li>
+      <li>키는 ID 밸류는 텍스트, 프로그램의 입력포맷은 KeyValueTextInputFormat 이다.</li>
+      <li>WordCount 프로그램은 컴바이너의 특성을 이용한다.</li>
+      <li>전체단어를 카운트 해서 볼 수 있다.</li>
+    </ol>
+  </li>
+</ul>
+
+<h1 id="topn">TopN</h1>
+<ul>
+  <li>WordCount2에서는 나타나는 모든 단어의 빈도수가 계산되기 때문에 만일 빈도수가 가장 높은 10개를 알고싶다면 다시 한번 별도로 처리해야한다.</li>
+</ul>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>(스터디) 하둡.araboza - 5</title>
+	  <link>//%EC%8A%A4%ED%84%B0%EB%94%94-%ED%95%98%EB%91%A1-5</link>
+	  <author>drakejin</author>
+	  <pubDate>2017-05-08T00:00:00+09:00</pubDate>
+	  <guid>//%EC%8A%A4%ED%84%B0%EB%94%94-%ED%95%98%EB%91%A1-5</guid>
+	  <description><![CDATA[
+	     <p>[데이터공작소]하둡.araboza - 5 에서 진행했던 소스를 좀 더 자세히 살펴보는 글입니다. 이번 챕터를 통해 맵 리듀스에 대해 자세히 알아보는 시간을 갖도록 합니다.</p>
+
+<h2 id="chapter-05">Chapter 05</h2>
+<p>Chapter04의 WordCount소스에 사용된 MapReduce소스에 대해서 분석해보는 챕터입니다.
+ - <a href="https://autofei.wordpress.com/2010/06/27/oreilly-hadoop-the-definitive-guide-06-2009/">하둡의 작동방법에 대해 상세히 나와있음 </a></p>
+
+<p><img src="/assets/posts/res/2017-05-08/mapreduce.jpg" alt="mapreduce" />
+<img src="/assets/posts/res/2017-05-08/mapreduce-process.png" alt="mapreduce-process" /></p>
+
+<h2 id="section">차례</h2>
+<ol>
+  <li>맵퍼</li>
+  <li>맵리듀스의 기본 자료형</li>
+  <li>입력포맷</li>
+  <li>컴바이너</li>
+  <li>셔플링과 소팅</li>
+  <li>리듀스</li>
+  <li>출력포맷</li>
+  <li>카운터</li>
+  <li>MRUnit과 메이븐</li>
+  <li>잡 트래커와 웹 인터페이스</li>
+</ol>
+
+<h2 id="section-1">맵 리듀스의 맵퍼</h2>
+
+<p>``` java
+class Mapper{</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>public void setup(Mapper.Context context);
+/*
+map 메소드에서 필요 리소스를 할당하는 역할을 합니다. map의 선행작업을 여기서 수행할 수 있습니다.
+분산캐시를 오픈하거나 파일을 미리오픈하거나 여기서 할 수 있습니다.
+*/    
+
+public void cleanup(Mapper.Context context);
+/*
+setup클래스의 반대 역할입니다. 할당한 리소스를 해제하는 역할을 합니다. 함수의 호출이 완료되면, 마지막으로 한번 호출됩니다.
+예를들어 setup에서 할당한 자원을 cleanup에서 해제하는것이 일반적인 사용모델입니다.
+*/
+
+public void run(Context context) throws IOException InterruptedException{
+    setup(context);
+    while(context.nextKeyValue()){
+        map(context.getCurrentKey(), context.getCurrentValue(),context)
+    }
+    cleanup(context);
+}
+/*
+Mapper의 전체 구동함수에 해당하며 이 함수를 오버라이드 할 일은 거의 없을것이다.
+setup메서드의 작업이 끝나야지 run메서드가 수행된다.
+*/
+</code></pre>
+</div>
+
+<p>}
+```</p>
+
+<h3 id="k1v1">맵퍼의 입력 K1,V1</h3>
+<p>맵의 입력에서 가장 중요한 부분은 어떤 입력 포맷을 사용하였는가이다.
+ - 텍스트 라인 하나가 하나의 레코드에 해당
+ - 해당 라인의 파일오프셋(파일 처음부터의 위치)가 키 값이 된다. (키 타입은 LongWritable)
+ - 해당 라인의 전체가 Value가 됩니다. Value Type은 Text가 됩니다.
+맵의 입력에 사용되는 입력포맷은  TextInputFormat 이외에도 [KeyValueTextInputFormat, SequenceFileInputFormat]등이 있습니다.</p>
+
+<h3 id="k3v3">맵퍼의 출력 K3,V3</h3>
+<p>맵의 출력 레코드들의 타입들이 전체 하둡 잡의 출력 타입들과 다르다면 Job클래스의 다음 두 메서드 호출을 통해서 프레임 워크에 알려야 합니다.</p>
+
+<blockquote>
+  <p>job.setMapOutputKeyClass
+  job.setMapOutputValueClass</p>
+</blockquote>
+
+<p>워드카운트 에서는 맵의 출력타입과 리듀스의 출력타입이 일치했기 때문에 위의 두 메소드를 호출할 필요기 없었습니다.</p>
+
+<p>간혹 맵 출력만 필요하고 리듀스는 아예 필요로 하지 않는다면 리듀스 태스크의 수를 0으로 지정하면 된다. 그러면 지정한 하둡잡의 출력 디렉토리에
+맵의 출력물들이 바로 저장되게 된다.</p>
+
+<blockquote>
+  <p>저장되는 파일 이름 형식은
+part-r-xxxx =&gt; part-m-xxxx가 된다.</p>
+</blockquote>
+
+<h3 id="identity-mapper--reducer">아이덴티티 맵퍼,리듀서 (Identity Mapper &amp; Reducer)</h3>
+<p>작업중에는 맵이나 리듀스가 필요없는것들도 있다. 이럴 때 사용하는게 아이덴티티 맵퍼나 리듀서이다.
+&gt; 아이덴티티 매퍼와 아이덴티티 리듀서는 주어진 입력 레코드(키,벨류)를 그대로 출력레코드로 내보내는 단순한 맵 클래스와 리듀스 클래스.</p>
+
+<h2 id="mapreduce----">MapReduce의 기본 자료형 및 변수들</h2>
+
+<p><img src="/assets/posts/res/2017-05-08/wrapping-variables.png" alt="wrapping variables" /></p>
+
+<h3 id="writable-">Writable 인터페이스</h3>
+<ul>
+  <li>기본적으로 이 인터페이스는 직렬화/역직렬화(Serialization/Deserialization) 을 구현하는데 사용되는 메소드들을 갖고 있다.</li>
+  <li>하둡 특성상 키/벨류 레코드가 디스크에 저장되거나 네트워크를 타고 전달되어야 하기 때문에 이런 인터페이스가 필요하다.</li>
+  <li>하둡은 RPC(Remote Procedure Call)을 이용해서 클러스터 내의 노드들 간에 통신합니다. 이 경우에도 Writable인터페이스를 사용하여 통신합니다.</li>
+</ul>
+
+<p>``` java 
+public class ItemFreq implements Writable{
+    private String item;
+    private Long freq;</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>@Override
+public void write(DataOutput out)throws IOException{
+    //write는 직렬화(Serialization)에 사용되는 메서드 이다. 주어진 스트림 내부 데이터를 차례로 저장하는 일을 수행하며, 저장된 데이터들만 보고 원래 상태가 복구될 수 있게 필요한 모든 정보를 저장한다.
+    WritableUtils.wrtieString(out, item);
+    // 먼저out객체에 item을 작성하고
+    out.writeLong(freq);
+    // 그 다음 out 객체에 값을 작성한다.
+}
+@Override
+public void readFields(DataInput in) throws IOException{
+    // readFields 는 역직렬화(Deserialization)에 사용되는 메서드 이다. write에서 저장했던 순서 ㄱ대로 차례로 저장했던 데이터를 꺼내어 객체의 마지막 상태로 원상 복구하는 역할을 수행한다.
+    item = WritableUtils.readString(in);//in의 item문자열을 읽는다.
+    freq = in.readLong(); // freq를 읽는다.
+}
+//... 생략
+</code></pre>
+</div>
+
+<p>}
+```</p>
+
+<h3 id="writablecomparable-">WritableComparable 인터페이스</h3>
+<ul>
+  <li>WritableComparable 은 Writable 에서 제공되는 메소드들에다가 객체들간의 비교를 가능하게 해주기 위해 Comparable인터페이스가 추가된 인터페이스 입니다.</li>
+  <li>하둡에서 맵과 리듀스에서 사용되는 키들은 소팅이 가능해야 하기 때문에 이런 인터페이스가 필요합니다.</li>
+  <li>Compareble인터페이스에는 compareTo라는 메소드 하나가 존재하며 이는 결국지금 객체와 인자로 들어온 객체들을 비교하여 둘 사이의 순서를 정해주는 역할을 합니다.</li>
+</ul>
+
+<p>``` java
+ // Writable인터페이스에서 compareTo 메서드가 추가된것 말고 다른게 없음.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>@Override
+public int compareTo(ItemFreq o) {
+    int result = item.compareTo(o.item);
+    if(0 = result){
+        result = (int) (freq-(o.freq));
+    }
+    return result;
+}
+</code></pre>
+</div>
+
+<p>```</p>
+
+<h2 id="mapreduce-wapping-">MapReduce의 Wapping 자료형</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Wrapping 변수</th>
+      <th>원본</th>
+      <th>반환 방법</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Text</td>
+      <td>String</td>
+      <td>.toString()</td>
+    </tr>
+    <tr>
+      <td>IntWritable</td>
+      <td>int</td>
+      <td>.get()</td>
+    </tr>
+    <tr>
+      <td>LongWritable</td>
+      <td>Long, long</td>
+      <td>.get()</td>
+    </tr>
+    <tr>
+      <td>FloatWrtiable</td>
+      <td>Floa, float</td>
+      <td>.get()</td>
+    </tr>
+    <tr>
+      <td>BooleanWritable</td>
+      <td>Boolean, boolean</td>
+      <td>.get()</td>
+    </tr>
+    <tr>
+      <td>ArrayWritable</td>
+      <td>[] , ArrayList</td>
+      <td>x</td>
+    </tr>
+    <tr>
+      <td>NullWritable</td>
+      <td>null</td>
+      <td>x</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>이외 제공되는 타입을 보려면 http://org.apache.hadoop.io를 참조하길…</li>
+</ul>
+
+<h2 id="section-2">입력 포맷의 역할</h2>
+<p><img src="/assets/posts/res/2017-05-08/input-format.png" alt="input format " />
+ - job.setInputFormatClass() 에 해당되는 내용.</p>
+
+<h3 id="textinputformat">TextInputFormat</h3>
+<ul>
+  <li>FileInutFormat을 상속함</li>
+  <li>텍스트 파일 대상이며 .gz 로 압축된 것도 처리가능하다.</li>
+  <li>라인 하나(\n, \r)가 하나의 입력 레코드에 해당됨.</li>
+  <li>한 레코드(라인)에서 키는 라인의 파일 오프셋(파일 선부에서부터) 타입은LongWritable이다.</li>
+  <li>한 레코드에서 라인 전체 스트링이 되며 타입은 text이다.</li>
+</ul>
+
+<h3 id="keyvaluetextinputformat">KeyValueTextInputFormat</h3>
+<ul>
+  <li>Keyvaluetextinputformat = TextInputFormat 기본적으로는 같다.</li>
+  <li>차이점은 하나의 레코드를 해석할 때 키와 벨류사이에 TAB문자와 같은 문자열을 분리자로 인지 하는지 안하는지에 대한 차이가 있습니다.</li>
+  <li>TAB 문자열 = \r</li>
+</ul>
+
+<h3 id="sequencefileinputformat">SequenceFileInputFormat</h3>
+<ul>
+  <li>하둡의 고유 파일 폼냇은 시퀀스파일</li>
+  <li>이 때 사용되는 기본 클래스가 바로 이 클래스</li>
+  <li>해당 파일이 생성 될 때 사용된 키와 밸류 타입을 사용해야 한다.</li>
+  <li>하지만 TextInputFormat 과 다른점은 LongWritable 과 Text로 고정된것이 아니기 때문에 어떤 Key와 Value로써 사용가능합니다.</li>
+  <li>이 포맷은 맵 파일을 읽는데도 사용할 수 있습니다.</li>
+  <li>디렉토리로 값을 줘도 읽을 수 있으며, 디렉토리로 값을 줄 때 맵 파일의 형태를 먼저 읽고 그 다음에 시퀀스 파일을 로드 합니다.</li>
+</ul>
+
+<h3 id="multipleinputs">MultipleInputs</h3>
+<ul>
+  <li>지금까지 입력포맷은 잡에 하나의 맵만 존재하는 형태였다. 하지만 입력포맷이 다른 경우에는 어떻게 되는가?</li>
+  <li>Multipleinputs클래스를 사용하여 공통된 키를 묶어서 조인을 수행할 수 있다.</li>
+</ul>
+
+<p>``` java
+    public static void addInputPath(
+        JobConf conf,  // 별도의 job class파일을 이용해도 된다. 
+        Path path, //hdfs상의 파일 위치
+        Class&lt;? extends InputFormat&gt; inputFormatClass,
+        Class&lt;? extneds Mapper&gt; mapperClass
+    )</p>
+
+<p>```</p>
+
+<h3 id="section-3">그 외 입력폼맷</h3>
+<ul>
+  <li>CombineFileInputFormat</li>
+  <li>NLineInputFormat</li>
+</ul>
+
+<h3 id="section-4">맵 태스크 수의 결정 방식</h3>
+<ul>
+  <li>입력파일을 처리하기 위해 필요한 맵 태스크의 수는 프레임워크가 알아서 결정한다.</li>
+  <li>입력포맷이 주어진 입력 파일을 처리하는데 몇 개의 맵 태스크가 필요한지 결헝한다.</li>
+  <li>입력포맷은 getSplits라는 메소드를 갖고 있는데 이는 주어진 모든 입력 파일들을 조각(InputSplit이라 한다.)으로 나눠서 그 조각들의 리스트를 리턴합니다.</li>
+  <li>이 조각마다 맵 태스크가 하나씩 할당된다.</li>
+</ul>
+
+<ol>
+  <li>리듀스가 하나일경우</li>
+</ol>
+
+<p><img src="/assets/posts/res/2017-05-08/one-reduce.png" alt="one reduce" /></p>
+
+<ol>
+  <li>리듀스가 두개일 경우</li>
+</ol>
+
+<p><img src="/assets/posts/res/2017-05-08/two-reduce.png" alt="two reduce" /></p>
+
+<ol>
+  <li>리듀스가 없을 경우</li>
+</ol>
+
+<p><img src="/assets/posts/res/2017-05-08/none-reduce.png" alt="none reduce" /></p>
+
+<h3 id="getsplits----">getSplits의 파일 조각 나누는 방식</h3>
+
+<blockquote>
+  <p>(맵 태스크 수) = (입력파일 수) * (데이터블록) or (gzip 등 압축된 파일 수)</p>
+</blockquote>
+
+<ol>
+  <li>입력파일의 수
+    <ul>
+      <li>기본적으로 입력 파일의 수가 중요한 요소가 된다.</li>
+      <li>맵 태스크의 수는 이보다 더 작아질 수는 없다.</li>
+    </ul>
+  </li>
+  <li>입력파일의 크기
+    <ul>
+      <li>데이터 블록으로 구성될 탠대 맵 테스크는 하나의 블록마다 할당된다.</li>
+      <li>결국 하나의 블록이 하나의 Input Split이 된다.</li>
+    </ul>
+  </li>
+  <li>입력포맷의 지능
+    <ul>
+      <li>gzip 등으로 압축되어있으면 전체 파일을 블록수와 관계없이 하나의 맵태스크로 지정함</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="section-5">입력포맷의 역할</h3>
+<ul>
+  <li>입력파일을 InputSplit으로 나누기</li>
+  <li>하나의 InputSplit내의 레코드들을 읽는 방법 제공</li>
+</ul>
+
+<h2 id="combiner">컴바이너 (Combiner)</h2>
+<ul>
+  <li>미니 리듀서 혹은 로컬 리듀서라고 부른다.</li>
+  <li>맵 태스크의 출력에 리듀스 코드 먼저 적용해서 리듀스로 넘어가야 하는 데이터의 크기를 줄이는 역할 담당.</li>
+  <li>컴바이너 적용 가능 모델 :잡의 성격마다 다르지만 작업의 순서를 달리해도 최종 결과물이 같은 잡일 경우에만.</li>
+  <li>컴바이넌 적용 가능 모델이라면 리듀스 클래스를 그대로 컴바이너로 가져가는걸 추천한다.</li>
+  <li>셔플링과 소팅부분에서는 컴바이너를 여러번 적용 시키는 모델이 존재한다.</li>
+  <li>WordCount의 경우 Combiner의 특성을 가지고 있기 때문에 main함수에서 리듀스 클래스를 그대로 컴바이너로 지정할 수 있습니다.</li>
+</ul>
+
+<h2 id="shuffling-and-sorting">셔플링과 소팅(Shuffling and Sorting)</h2>
+<p>맵 리듀스에서 자동으로 해주는 내부동작이다. 맵 태스크와 리듀스 태스크를 이해하기위해 이해하고 넘어가야 할 부분</p>
+
+<h3 id="to----">파티셔너 to 레코드 어떻게 리듀스로 보내는가.</h3>
+<ol>
+  <li>결과 레코드의 키값을 해싱한다.</li>
+  <li>해싱된 값을 리듀스 태스크의 수로 나눈다.</li>
+  <li>해싱된 레코드가 어느 태스크로 갈지 결졍된다.(같은 키를 갖는 레코드들은 같은 리듀스 태스크로 보내지게 된다.)</li>
+  <li>1번~3번 동작을 수행하는것이 바로 파티셔너(partitioner)라 부른다.
+    <ul>
+      <li>맵 태스크가 새로운 Key/Value를 출력하면 이는 궁극적으로 특정 리듀스 태스크로 보내져야 한다.</li>
+      <li>자신만의 파티셔너를 정의할 수 있지만, 기본적으로 사용되는 파티셔너의 클래스이름은 HashPartitioner</li>
+    </ul>
+  </li>
+</ol>
+
+<p>``` java
+// HashPartitioner&lt;K,V&gt;.class</p>
+
+<p>public class HashPartitioner&lt;K, V&gt; extends Partitioner&lt;K, V&gt;{
+    /** use {@link Object#hashCode()} to partition. **/ 
+    public int getPartition(K key,V value, int numReduceTasks){
+        return (key.hashcode() &amp; Integer.MAX_VALUE) % numReduceTasks;//파티션 번호에 해당한다.
+    }
+}</p>
+
+<p>```</p>
+
+<ul>
+  <li>파티션 번호 : 위 코드를 보면 알 수 있듯이 주어진 키의 해시값을 얻어낸 다음에 그것을 리듀스 태스크의 수(Job 클래스의 numReduceTasks메소드로 지정한 값)로 나눈 나머지를 리턴하고 있다.</li>
+  <li>파티셔너는 맵 테스크에서 나온 ㅊㄹ력레코드를 보고 어느 리듀스 태스크로 보낼지 결정해주는것이 파티셔너 입니다.</li>
+</ul>
+
+<h3 id="section-6">맵 출력 버퍼링</h3>
+<ol>
+  <li>맵에서 출력된 레코드 들은 파티셔너(Partitioner) 클래스를 통해 파티션 번호를 알아낸다.</li>
+  <li>리듀스로 바로 가지 않고 메모리 버퍼에 씌어졌다가 메모리 버퍼가 차면 디스크에 레코드가 써집니다.</li>
+  <li>맵 태스크가 종료될때까지 1번과 2번 과정을 반복합니다.</li>
+  <li>종료시에는 디스크로 존재하던 파일들을 모두 모아서 하나의 파일로 병합합니다.(4번의 과정은 모든 맵 태스크마다 이루어지게 됩니다.)</li>
+  <li>리듀스 태스크들은 병합된 결과 레코드 파일에서 각기 자신에게 해당하는 파티션의 데이터를 읽어 갑니다.</li>
+  <li>M개의 맵퍼와 N개의 리듀서가 존재한다면 M*N개의 네트워크 커넥션이 맺어지게 됩니다.</li>
+  <li>M*N개의 커넥션의 네트워크를 통해 리듀서 자신에게 해당되는 데이터를 복사해 갑니다.</li>
+</ol>
+
+<ul>
+  <li>M*N개의 커넥션에서 리듀서 자신에게 해당되는 데이터를 복사해갈 때 데이터가 크다면 병목지점이 발생하게 된다.</li>
+  <li>성능에 있어 랜덤쓰기와 순차쓰기의 차이때문에 맵의 결과를 임시적으로 메모리 버퍼에 저장하는 방식을 이용한다.  (잦은 파일 입출력 방지를 위해)</li>
+</ul>
+
+<h3 id="section-7">셔플링</h3>
+
+<p><img src="/assets/posts/res/2017-05-08/shuffling-sorting.png" alt="Shuffling &amp; sorting" /></p>
+
+<ul>
+  <li>셔플링 : 맵 태스크가 종료되면 그때 리듀스 태스크들이 자신에게 해당하는 파티션의 데이터만 읽어가게 되는데 이때는 RPC등을 통하는 것이 아니라 그냥 HTTP를 통해 읽습니다. 이 과정을 셔플링이라한다.</li>
+  <li>셔플링이 섞는 과정인줄알았는데 알고보니 단순 데이터 복사.</li>
+  <li>송수신 시 에러발생을 감지하기위해 CRC(Cycle Redundancy Check)체크썸 정보(4Byte)가 마지막에 별도로 전송된다. 리듀스의 데이터 읽기용말고 일반적으로 데이터 송수신에도 사용된다.</li>
+</ul>
+
+<h3 id="section-8">모니터링 툴들</h3>
+<ul>
+  <li>Ganglia: 하둡전용이 아닌 일반적인 클러스터와 같은 분산화경용 모니터링 시스템</li>
+  <li>Amabari : 하둡 클러스터 모니터링, 하둡클러스터 설치와 관리, 여러가지 기능을 지원하는 종합적인 툴의 성격</li>
+  <li>Puppet : 환경 설정관리, 파일의 복사 성공여부를 조회하고 관리할 수 있습니다.</li>
+</ul>
+
+<h3 id="section-9">소팅</h3>
+<ul>
+  <li>spill을 합병할 때 처럼 파일들의 수를 이정한 수 밑으로 유지하려 한다. 이 때도 io.sort.factor파라미터 값을 사용한다.</li>
+  <li>맵 태스크들에서 자신의 파티션 데이터들을 가져왔으면 이 데이터들을 하나로 병합한다.</li>
+  <li>병합된 데이터를 키를 바탕으로 소팅한다.(GroupingComparator)라는 게 이용된다. 이것은 리듀스 태스크들로 모인 레코드들의 키를 정렬하는 역할을 한다.</li>
+  <li>소팅이 끝나면 소팅된 레코드들을 전체적으로 스캔하면서 레코드들을 그룹핑한다.</li>
+  <li>이는 하나의 리듀스 입력 레코드를 만드는 것이다.</li>
+  <li>한 그룹으로 묶여진 레코드들 간의 순서를 정하기 위해서 SortComparator 라는것을 사용한다.</li>
+</ul>
+
+<h2 id="section-10">리듀스 클래스</h2>
+<ul>
+  <li>Reducer클래스를 보면 run, setup, cleanup이란 메소드들을 가지고 있으며 하는 역할도 맵 클래스에서 하는 역할과 비슷하다.</li>
+</ul>
+
+<h3 id="section-11">리듀스의 입력</h3>
+<ul>
+  <li>셔플링과 소팅을 통해 리듀스의 입력은 모든 맵 태크들의 출력 레코드가 합쳐져서 만들어진것.</li>
+  <li>맵 태스크 출력 레코드들의 셔플링과 소팅이 완료되면 리듀스의 입력 레코드는 완성됨</li>
+</ul>
+
+<h3 id="section-12">리듀스의 출력</h3>
+<ul>
+  <li>출력레코드는 hdfs상에서 저장된다.</li>
+</ul>
+
+<h3 id="identity-reducer">아이덴티티 리듀서(Identity Reducer)</h3>
+<ul>
+  <li>입력으로 들어온 레코드를 그대로 다시 출력해주는 역할을 한다.</li>
+  <li>모든 리듀서의 기본 클래스는 에이덴티티 리듀서로 구현되어있다.</li>
+  <li>아이덴티티 리듀서는 밸류 리스트를 다시 리스트로 내보내는것이 아닌 for루프 돌면서 각기 하나의 값을 하나의 레코드로 출력한다.</li>
+  <li>밸류 리스트에 N개의 원소가 있었다면, N 개의 키/밸류 레코드를 출력하는 셈</li>
+  <li>셔플링과 소팅 때문에 맵 태스크들에서의 원래 출력과 순서가 달라진다.</li>
+  <li>대표적으로 같은 키를 갖는 레코드들끼리 모아서 처리해야할 필요가 없는 경우 많이 사용된다.</li>
+</ul>
+
+<h3 id="section-13">리듀스 기타</h3>
+<ul>
+  <li>리듀스에서 주의할 점은  인자로 넘어오는 밸류 리스트 (Iterable<v>)의 경우 한 번 밖에 스캔할 수 없다는 점입니다. 다시 스캔하려고 하면 에러가 발생한다.</v></li>
+  <li>그 이유는 reduce메소드에 들어온 입력 레코드들이 메모리에 로드되기전에는 너무 클 수 있기 때문에 내부적으로 한 번만 스캔하도록 되어있다.</li>
+  <li>리듀스 테스크를 만약 0으로 정해준다면 맵퍼들의 결과로만 결과가 출력이 되어 결과 파일은 part-m-xxxx로 나오게 될것이다.</li>
+</ul>
+
+<h2 id="section-14">출력 포맷</h2>
+<p><img src="/assets/posts/res/2017-05-08/output-format.png" alt="output format" /></p>
+
+<h3 id="textoutputformat">TextOutputFormat</h3>
+<ul>
+  <li>한 라인에서 키와 밸류는 tab문자로 구분된다.(KeyValueTextInputFormat)에 반대되는 개념 하지만 그렇다고해서 KeyValueTextOutputFormat이 존재하는건 아니다.</li>
+  <li>결과파일 압축하기 job.setCompressOutput과 job.setOutputCompressClass를 사용하여 압축 방법과 여부를 설정할 수 있다.</li>
+</ul>
+
+<h3 id="sequencefileoutputformat">SequenceFileOutputFormat</h3>
+<ul>
+  <li>시퀀스 파일 포맷으로 출력파일을 쓸 때 사용함</li>
+  <li>하둡의 여러잡을 이어서 실행할 경우 반드시 사용해야하는 출력포맷이다.</li>
+  <li>
+    <p>이 출력 포맷은 세 가지 압축 방식(Block, None, Record)를 지원하며 SequenceFileOutputFormat 클래스의 setOutputCompressionType 메소드를 통해 압축방식을 지정할 수 있다.(BLOCK, NONE, RECORD)</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>압축모드</th>
+          <th>설명</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>BLOCK</td>
+          <td>블록내의 레코드들을 같이 압축한다.</td>
+        </tr>
+        <tr>
+          <td>NONE</td>
+          <td>압축하지 않는다.</td>
+        </tr>
+        <tr>
+          <td>RECORD</td>
+          <td>레코드 별로 압축한다. 기본설정이 바로 레코드별 압축이다.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h3 id="mapfileoutputformat">MapFileOutputFormat</h3>
+<ul>
+  <li>출력을 맵 파일 형태로 만들어주는 출력포맷</li>
+  <li>파일 기반의 맵으로 사실상 하나의 디렉토리로 구성되며 그 디렉토리 밑에 두 개의 파일이 존재한다.</li>
+</ul>
+
+<blockquote>
+  <p>디렉토리 밑의 두 파일에 대한 설명
+1. 하나는 맵의 데이터 파일로 모든 키와 벨류들이 들어간다. 키를 바탕으로 정렬된다.
+2. 다른 하나는 인덱스 파일로 키들의 일부를 저장하는데 목적은 데이터 파일을 순차적으로 뒤지지 않도록 해주는것.</p>
+
+  <p>순처적으로 뒤지지 않게하는게 왜 ?
+- 순차적으로 뒤지지 않게 만들기 위해 키를 일정 간격으로 뽑아 내어서 저장해 둔다. (흔히 스킵테이블이라 한다.)
+- 간격을 적당히 크게 하면 인덱스 파일의 크기가 작아지게된다.</p>
+
+  <p>이것을 사용하기 위해서는 SequenceFileInputFormat 을 이용해야한다. (MapFileInputFormat은 존재하지 않는다.)</p>
+</blockquote>
+
+<h3 id="multipleoutput">MultipleOutput</h3>
+<ul>
+  <li>어떤 프로그램에서는 한 현태의 출력파일이 아니라 여러가지 형태의 서로 다른 출력 파일을 명시적으로 만들 수 있다.</li>
+</ul>
+
+<h2 id="mrunit-maven">MRUnit과 Maven</h2>
+
+<h3 id="mrunit">MRUnit</h3>
+<ul>
+  <li>테스트 도구, JUnit과 같다.</li>
+  <li>클라우데라에 의해 개발됨. 유닛 테스트 할 때 사용됨</li>
+</ul>
+
+<h3 id="section-15">유닛테스트</h3>
+<ul>
+  <li>소스 코드에서 일종의 단위별로 테스트 하는 것을 유닛 테스트라고 한다.</li>
+  <li>큰 모듈을 테스트 하는것이 아니라 작은 클래스나 함수 단위에서 꼭 테스트 해보자는 것이다.</li>
+  <li>유닛 테스트 코드를 가팅 추가하는것은 권장되고있고 강제가 될 때도 있다.</li>
+  <li>if문의 개수당 테스트를 하기도 하며</li>
+  <li>로직의 경로당 테스트를 전부 하느냐 하지않느냐에 따라 테스트 커버리지가 결정되기도 한다.</li>
+</ul>
+
+<h3 id="maven">Maven</h3>
+<ul>
+  <li>빌드 시스템,</li>
+  <li>프로젝트 관리도구</li>
+</ul>
+
+<h2 id="section-16">그외 기타</h2>
+
+<h3 id="job-tracker-web-interface">job tracker web interface</h3>
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>mapred-site.xml</td>
+          <td>mapred.job.tracker.http.address 의 값을 수정하면 url이나 포트를 변경할 수 있다.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h3 id="section-17">패키지 소스 코드 구분</h3>
+<ul>
+  <li>
+    <p>레거시 코드 
+ &gt; org.apache.hadoop.mapred</p>
+  </li>
+  <li>
+    <p>최신 코드
+ &gt; org.apache.hadoop.mapreduce</p>
+  </li>
+</ul>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>(스터디) 하둡.araboza - 4</title>
+	  <link>//%EC%8A%A4%ED%84%B0%EB%94%94-%ED%95%98%EB%91%A1-4</link>
+	  <author>drakejin</author>
+	  <pubDate>2017-05-07T00:00:00+09:00</pubDate>
+	  <guid>//%EC%8A%A4%ED%84%B0%EB%94%94-%ED%95%98%EB%91%A1-4</guid>
+	  <description><![CDATA[
+	     <p>[데이터공작소] 하둡 스터디 자세한 내용은 소스에 주석을 달아 놓았습니다. 소스를 참고해주시기 바랍니다.</p>
+
+<h2 id="chapter-04">Chapter 04</h2>
+<p>WordCount 에 대해서 배워본다. 이번장은 소스에 주석으로 진행하였으니 소스를 참고하여 주시기 바랍니다.</p>
+
+<h2 id="section">소스 위치</h2>
+<ul>
+  <li><a href="https://github.com/drake-jin/hadoop-study/tree/master/week04/wordcount/wordcount/src/wc/MyWordCount.java">소스가 있는곳</a></li>
+</ul>
+
+<h2 id="section-1">실행</h2>
+
+<p>``` bash
+$ mvn build
+$ mvn install
+# $ hadoop jar {jar} {main class의 위치} [arg0,arg1,arg2 … arg n]
+$ hadoop jar {jar} wc.MyWordCount […args]</p>
+
+<p>```</p>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>(스터디) 하둡.araboza - 3</title>
+	  <link>//%EC%8A%A4%ED%84%B0%EB%94%94-%ED%95%98%EB%91%A1-3</link>
+	  <author>drakejin</author>
+	  <pubDate>2017-05-05T00:00:00+09:00</pubDate>
+	  <guid>//%EC%8A%A4%ED%84%B0%EB%94%94-%ED%95%98%EB%91%A1-3</guid>
+	  <description><![CDATA[
+	     <p>[데이터공작소] 설치는 구글에 “하둡 의사분산노드 설치”라는 검색어로 직접 찾아서 버전에 맞도록 설치합니다. 본 블로그에서 사용한 버전은  1.x 버전을 사용하였습니다.</p>
+
+<h2 id="section">의사분산 노드 설치하기</h2>
+<ul>
+  <li>각 버전에 맞추어 직접 설치하길 바란다.</li>
+  <li>본 블로그에서는 1.x 버전에서 작업을 하였다.</li>
+  <li>참고는 Do it 하둡 프로젝트의 내용을 참고하였다.</li>
+  <li>설치할 때 hdfs-core.xml 에서 data.tmp 의 경로를 /tmp로 설정하지 않는것을 권장한다.</li>
+  <li>재부팅시 마다 매번 hdfs를 새로 생성해야하기때문.</li>
+</ul>
+
+<ol>
+  <li>ssh server를 오픈해야함. 보통 desktop mode의 ubuntu에서는 ssh서버를 Default로 열어놓지 않으니 직접 열어서 할것.</li>
+  <li>jps했을 때 의사분산모드의 경우 6개의 프로세스(jps포함)가 올바르게 잘 뜨는지 확인할것.</li>
+</ol>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>(스터디) 하둡.araboza - 2</title>
+	  <link>//%EC%8A%A4%ED%84%B0%EB%94%94-%ED%95%98%EB%91%A1-2</link>
+	  <author>drakejin</author>
+	  <pubDate>2017-04-30T00:00:00+09:00</pubDate>
+	  <guid>//%EC%8A%A4%ED%84%B0%EB%94%94-%ED%95%98%EB%91%A1-2</guid>
+	  <description><![CDATA[
+	     <p>[데이터공작소] 멥리듀스와 하둡 그리고 hdfs에 대해서 알아봅니다.</p>
+
+<h2 id="chapter-02-mapreduce">Chapter 02 MapReduce</h2>
+
+<p><img src="/assets/posts/res/2017-04-30/mapreduce-work.png" alt="mapreduce work" /></p>
+
+<ul>
+  <li>맵리듀스는 데이터 처리를 위한 프로그래밍 모델이다.</li>
+  <li>하둡은 다양한 언어로 쓰인 맵 리듀스 프로그램을 구동시킬 수 있다.</li>
+  <li>가장 중요한 것은 맵리듀스 프로그램은 타고난 병행성 Pararrel을 내포하고 있다.</li>
+  <li>맵리듀스는 커다란 데이터셋에서 그 진가가 드러난다.</li>
+</ul>
+
+<h2 id="section">하둡 정의</h2>
+<ul>
+  <li>하둡은 대용량 데이터를 분산처리할 수 있게 도와주는 아파치 오픈소스 프록젝트</li>
+  <li>하둡은 자바위에서 돌아간다.</li>
+  <li>하둡은 HDFS,MapReduce의 마스터와 슬레이브가 같은 곳에 놓인다.</li>
+</ul>
+
+<h3 id="section-1">하둡의 특징</h3>
+<ol>
+  <li>오픈소스</li>
+  <li>데이터가 있는 곳으로 코드를 이동시킴</li>
+  <li>스케일 아웃(스케일 아웃)</li>
+  <li>오프라인 배치 프로세싱에 최적화</li>
+</ol>
+
+<h3 id="x-">하둡의 아키텍쳐(1.x 기준)</h3>
+<ol>
+  <li>HDFS나 MapReduce 모두 하나의 마스터와 다수의 슬레이브로 구성되어있습니다.</li>
+  <li>마스터 슬레이브 형태의 아키텍쳐를 가진다.</li>
+</ol>
+
+<h3 id="section-2">하둡 구성 요소</h3>
+
+<p><img src="/assets/posts/res/2017-04-30/hadoop-work.png" alt="hadoop element" /></p>
+
+<ul>
+  <li>네임노드 = 마스터, HDFS 1.x 에는 단하나만 존재하는 네임노드는 hdfs에 저장되는 각종 파일과 디렉토리들의 메타정보를 관리하고 실제 데이터는 다수의 데이터 노드에 분산저장하는 역할을 담당한다.</li>
+  <li>네임노드 메타 정보 = 메타정보는 저장된 파일의 이름, 디렉토리, 복제본 수, 블록 ID, 블록별 저장 데이터 노드 이름 과 같은 정보들을 메타정보 메모리에 유지합니다.</li>
+  <li>데이터노드 = 슬레이브, 실질적인 데이터가 있는곳.</li>
+  <li>2차 네임노드 = 네임노드에 문제가 생기면 전체 아키텍쳐에 문제가 생기기 때문에 2차 네임노드가 별도로 존재하여 백업한다. 이 행위를 체크포인팅 이라 한다.</li>
+  <li>네임노드를 되살리는 3요소 = 2차 네임노드, 체크포인트, 에딧로그</li>
+  <li>잡 트레커 = 네임노드에서의 잡을 수행시키는 역할</li>
+  <li>잡 트래커 = 잡 트래커는 태스크트래커가 수행할 태스크를 스케줄링하는 역할로 시스템 전체에 모든 잡이 수행되도록 한다</li>
+  <li>테스크 트래커 = 데이터노드에서 실질적인 작업을 수행하는 역할, 잡 트래커에 의해 태스크를 병렬적으로 수행합니다.</li>
+  <li>테스크 트래커 = 태스크 트레커는 태스크를 수행하고 각 잡의 전체경과를 하나의 레코드로 유지하는 경과 보고서를 잡 트레커에 보낸다. 만일 태스크가 실패하면 잡 트래커는 그것을 다른 태스크 트래커에게 다시 스케줄 한다.</li>
+  <li>맵리듀스 잡Job =  클라이언트가 수행하려는 작업 단위, 입력데이터, 맵리듀스 프로그램, 설정 정보로 구성된다 하둡은 잡을 맵 태스트와 리듀스 태스크로 나누어 실행한다.</li>
+  <li>입력스플릿또는 그냥 스플릿 = 하둡은 맵 리듀스의 잡의 입력을 스플릿으로 불리는 고정크기조각으로 나눈다. 하둡은 각 스플릿마다 하나의 맵 태스크를 생성하고 그 스플릿에 있는 각 레코드를 사용자 정의 맵 함수로 처리한다.</li>
+</ul>
+
+<h2 id="hdfs-">HDFS 특징</h2>
+
+<p><img src="/assets/posts/res/2017-04-30/hdfsworking.gif" alt="hdfs working" /></p>
+
+<ul>
+  <li><a href="https://hadoop.apache.org/docs/r1.2.1/hdfs_design.html">hdfs상세동작 공홈</a></li>
+</ul>
+
+<ul>
+  <li>hdfs 는 1버전 기준으로 전체시스템에 하나의 네임노드가 주어진다. 2버전에는 하나의 네임노드가 아니라 다수의 네임노드를 설정할 수 있다.</li>
+  <li>파일을 여러개의 블록으로 지정할 수 있습니다. 기본64MB, 프로덕션에서는 128MB 를 많이 사용합니다.</li>
+  <li>하부 운영체제의 파일 시스템을 그대로 사용한다. 운영체제의 파일시스템이 ext3든 NTFS든 상관하지 않고 네임노드의 관리를 받습니다.</li>
+  <li>하드웨어가 고장나도 문제를 해결할 수 있습니다. hdfs에서 복제본수(Replication Factor)라 하여 시스템 상황에 맞게 복제본 수를 지정할 수 있습니다.</li>
+  <li>Replication Factor의 존제는 다른 데이터노드가 망가져도 데이터 노드에 있던 데이터 블록들을 복구 시킬 수 있습니다.</li>
+  <li>Write Once Read Many 기본적으로 이미 씌어진 파일의 내용을 바꿀 수 없으며 그러려면 파일 전체를 새로 써야 한다.</li>
+  <li>다른 시스템의 기본 구성 블록 hdfs에서 호환 좋은 MapReduce와 HBase가 있다.</li>
+  <li>웹에서 접근 가능합니다 1.0 부터는 WebHDFS라는 RestAPI가 제공되므로 HDFS를 Http인터페이스를 통하여 쉽게 접근할 수 있습니다.</li>
+  <li>세이프 모드 : 클러스터 내의 데이터노드들로부터 상태와 보유 블록 리스트를 받아서 자신이 가지고 있는 정보와 맞춰본 다음에 복제본 개수들이 맞는지 확인한다. 이 과정동안 외부 요청에 반응하지 않는데 이를 세이프 모드라 한다.</li>
+  <li>네임노드와 데이터노드간의 통신을 주기적으로 한다. 이를 Heartbeat라 하며 데이터노드는 기본적으로 매 3초마다 heartbeat를 보내야한다.</li>
+  <li>네임노드 WebInterface : jetty웹 서버와 jsp 를 이용하여 간단히 구현되어있으며, 네임노드의 현재상황을 보여주기위한 방편으로 간단한 웹 인터페이스를 제공한다.</li>
+</ul>
+
+<h3 id="hdfs--">hdfs의 읽기 쓰기</h3>
+<ul>
+  <li><a href="http://www.guru99.com/learn-hdfs-a-beginners-guide.html">hdfs의 읽기 쓰기 상세설명</a></li>
+</ul>
+
+<h3 id="hdfs--1">hdfs의 읽기</h3>
+
+<p><img src="/assets/posts/res/2017-04-30/hdfs-read.png" alt="hdfs read" /></p>
+
+<ol>
+  <li>hdfs클라이언트는 먼저 네임노드와 통신하여 자신이 읽고자 하는 파일의 이름을 넘깁니다.</li>
+  <li>네임노드로부터 해당 파일의 데이터 플록 위치 리스트를 얻어옵니다.</li>
+  <li>각 블록 ID별로 복제본의 개수만큼 데이터노드의 이름이 넘어오게 된다.</li>
+  <li>파일의 크기가 데이터플록 크기보다 작다면, 리턴되는 리스트는 한 쌍의 데이터노드와 블록 ID(복제 수 만큼 반복된다.)으로 충분하지만, 클라이언트는 이 때 부터 네임노드의 관섭없이 데이터 노드들과 직접 통신하여 데이터블록을 차례대로 읽어 온다.</li>
+</ol>
+
+<h3 id="hdfs--2">hdfs의 쓰기</h3>
+
+<p><img src="/assets/posts/res/2017-04-30/hdfs-write.png" alt="hdfs write" /></p>
+
+<ol>
+  <li>HDFS 클라이언트는 먼저 파일을 로컬 파일 시스템에 생성하고 데이터를 hdfs 에 쓰기 시작합니다.</li>
+  <li>파일 생성이 끝나거나 크기가 데이터블록의 크기(기본 64MB)보다 크다면 이 때 네임노드와 통신합니다. 네임노드는 이 때 파일 생성 요청을 메모리 메타정보와 editlog에 기록합니다.</li>
+  <li>네임노드는 이 데이터가 저장될 데이터 블록의 ID와 이 블록이 저장될 데이터노드들의 이름을 결정하여 HDFS 클라이언트에게 보내준다.</li>
+  <li>HDFS 클라이언트는 이중 처 번째 데이터노드에 데이터블록을 쓰면서 복제가 발생해야하는 나머지 데이터노드들의 리스트를 같이 넘깁니다</li>
+  <li>첫 번째 데이터노드는 데이터를 HDFS 클ㄹ라이언트로 복사받으면서 두 번째 데이터노드와 접촉하여 그곳으로 복제를 시작한다.</li>
+  <li>마지막 데이터노드에서 블록의 복제가 완료되면 이 시점에 해당 데이터블록이 생성 완료된것으로 간주한다. 이 프로세스를 복제 파이프라이닝이라고 한다 (Replication Pipelining)</li>
+  <li>파일의 생성이 완료된것이 아니라면 다시 2로 간다.</li>
+</ol>
+
+<blockquote>
+  <p>앞서 hdfs읽기에서 비슷하게 네임노드는 실제 데이터복제 과정에는 직접 참여하지 않으며 hdfs클라이언트가 복제본 개수 만큼의 복제를 직접 시도하지 않고 데이터노드들을 통하여 차례로 수행하는 파이프라인의 형식방식을 체택하고 있다.</p>
+</blockquote>
+
+<h3 id="hdfs--3">hdfs 접근</h3>
+<ol>
+  <li>hdfs라이브러리 사용</li>
+  <li>셸 커민드라인을 통한 접근</li>
+</ol>
+
+<h4 id="hdfs-federation">hdfs Federation</h4>
+<ul>
+  <li>1.x 버전에서는 네임노드가 하나였는대 2.x 버전부터는 다중네임노드를 지원해주는것을 이야기 합니다.</li>
+</ul>
+
+<h4 id="hdfs--4">hdfs파일 블록</h4>
+<ul>
+  <li>스플릿 : 전체입력을 통째로 처리하는 시간보다 많은 스플릿을 통해 분할된 조각을 처리하는 시간이 더 짧게 걸린다. 따라서 만일 병렬로 스플릿을 처리한다면 스플릿크기가 작을 수록 부하 분산에 더 좋은 효과를 낼 수 있다.</li>
+  <li>부하 분산 효과는 스플릿이 세분화 될 수럭 (fine-grained)될 수록 더 커진다.</li>
+  <li>분할크기를 머 작게하면 분할 관리와 맵 태스크 생성을 위한 오버헤드가 전체 잡 실행 시간을 압도하기 시작한다. 기본적으로 64MB의 HDFS블록을 사용하는 추세이다.</li>
+</ul>
+
+<h4 id="hdfs----">최적의 스플릿 크기가 hdfs블록 크기와 같아야 하는 이유</h4>
+<ul>
+  <li>그 블록 크기가 단일 노드에 저장된다고 확신할 수 있는 가장 큰 입력 크기이기 때문.</li>
+  <li>만일 스플릿이 두 블록에 걸쳐지면 어떤 HDFS노드도 두 블록을 모두 저장하지 않을 것 이기 때문에 일부 스플릿을 네트워크를 통해 맵 태스크가 수행되는 또 다른 노드로 전송해야 한다.</li>
+  <li>맵 태스크가 전체 로컬 데이터만을 사용하여 실행할 때에 비하면 훨씬 비효율적이 된다.</li>
+</ul>
+
+<h4 id="section-3">네임노드의 수복과정</h4>
+<ol>
+  <li>2차 네임노드는 주기적으로 네임노드에게 체크포인트를 요청한다.</li>
+  <li>네임노드는 메모리에 존재하는 파일시스템 메타정보를 디스크 파일로 써버린다 (FS Image) 이를 체크포인트라 한다.</li>
+  <li>디스크에 써버린 파일을 2차 네임노드가 복사해간다</li>
+  <li>체크포인트 사이에 혹시 발생할지 모르는 문제에 대비하여 체크포인트 사이의 모든 hdfs 트랜잭션은 모두 Editlog라는 파일에도 수록한다.</li>
+  <li>2차 네임노드가 네임노드에게 체크포인트를 요청할 때마다 editlog의 내용은 모두 리셋된다.</li>
+  <li>네임노드에 문제가 발생하면, 하둡클러스터의 관리자는 2차 네임노드에서 마지막 체크포인트된 파일 위에 네임노드에 있는 editlog를 리플레이하여 hdfs 을 마지막 최종 상태로 복구하게 된다.</li>
+</ol>
+
+<blockquote>
+  <p>주의 사항 
+1. 체크포인트 파일, 에딧로그 파일에 문제가 있다면 복구는 불가능
+2. 네임노드 복구작업은 기본적으로 오래걸린다. 그리고 기본적으로 안전하지도 않다.
+3. 하둡 2.0 에서는 개선포인트로 다중 네임노드를 운영하는것임.</p>
+</blockquote>
+
+<h4 id="hadoop-20---hahigh-availability">hadoop 2.0의 개선 포인트 HA(High Availability)</h4>
+<ol>
+  <li>네임노드 HA 는 하둡 0.23의 개선포인트들 중 하나입니다. 네임노드를 다수의 노드로 가져가는 방식을 줄여서 HA라고 한다</li>
+  <li>하나의 프라이머리 네임노드, 하나 이상의 스텐바이 네임노드로 구성되어있다. ( 프라이머리 네임노드가 작동하지 않는것이 발견되면 그 때 스텐바이 네임노드가 프라이머리 네임노드로 역할을 대신한다. )</li>
+  <li>2번 상황을 고려하여 Zookeeper를 사용한다.</li>
+  <li>프라이머리 네임노드와 스텐바이 네임노드의 Hdfs메타데이터 정보공유는 기본적인 체크포인트 요청 및 데이터노드의 heartbeat패킷보고에 포함되어있어 전체적인 상황을 알 수 있게 해줍니다.</li>
+</ol>
+
+<h2 id="section-4">하둡의 병렬수행</h2>
+<ul>
+  <li>이론적으로 하나의 서버에서 이용할 수 있는 모든 하드웨어 스레드별로 다른 프로세스를 실행시켜 다른 연도별 파일을 처리할 수 있다.</li>
+  <li>하지만 위 이론에는 문제가 있다.</li>
+  <li>
+    <ol>
+      <li>동일한 크기별로 잡을 나눈다는 것이 항상 쉽고 명백하지 못하다. A, B, C 파일중 A가 1TB이고 나머지는 1KB일 때 BC는 금방읽었지만 A가 아직 다 안 읽혔기 때문에 B와C를 읽는 스레드는 기다리게 된다.</li>
+    </ol>
+  </li>
+  <li>
+    <ol>
+      <li>독립적인 프로세스로부터 결과를 조합하는 데 더 많은 처리가 필요할 수 있다. 데이터 청크단위로 최고 기온을 획득하여 최종적으로 그 결과를 조합한다면 연되별 최고 기온은 마지막에 찾게 될 수 있다.</li>
+    </ol>
+  </li>
+  <li>
+    <ol>
+      <li>단일 서버의 처리 능력은 한정되어 있다.</li>
+    </ol>
+  </li>
+</ul>
+
+<h3 id="section-5">병렬처리를 위해 쿼리를 맵리듀스의 잡으로 표현</h3>
+<ol>
+  <li>소규모 테스트를 해보고, 다수 서버로 구성된 클러스터에서 최종적으로 수행해 볼 수 있다.</li>
+  <li>맵단계에서의 입력은 원본 데이터, 리듀스 단계에서의 입력데이터는 맵 단계의 수행으로 도출된 결과 값들이다.</li>
+</ol>
+
+<h3 id="section-6">맵 리듀스의 맵과 리듀스의 역할</h3>
+<ul>
+  <li>맵은 키와 벨류로 만드는 과정</li>
+  <li>리듀스는 기와 벨류를 임의의 과정으로 추합하는 과정이다.</li>
+  <li>기본적으로 입력데이터는 hdfs에서 쓰고, 처리한 결과의 출력데이터도 hdfs에서 쓴다.</li>
+</ul>
+
+<h2 id="mapreduce">MapReduce</h2>
+<ul>
+  <li>데이터가 있는 서버로 코드를 전송한다. 소스코드보다 데이터의 크기가 훨씬 크기 때문에 처리할 데이터가 있는 서버로 소스코드를 전송함으로써 실행속도를 빠르게 한다.</li>
+  <li>데이터를 키/벨류 데이터 셋으로 변환처리한다. 입력데이터를 하나이상의 조각으로 나누고 나눠진 조각에 맞추어서 서버에서 각기 다른 병렬처리하는 것인대 이를 맵 태스크라고 한다. 맵 테스크에서 출력된 최종 처리 과정을 리듀스 태스크라 하며, 하나 이상에서 실행할 수 있다.</li>
+  <li>ShareNothing아키텍쳐로써 리듀스 태스크는 병렬성이 아주 높다. 맵 태스크들끼리 혹은 리듀스 태스크들끼리 서로 의존성이 없어 각기 자기가 처리할 레코드만 보고 처리하면 되기 때문이다</li>
+  <li>오프라인 배치처리에 적합. hdfs는 기본적으로 오프라인 배치처리를 위한 시스템이기 때문에 MapReduce 프로그램은 실행을 준비하는대 상대적으로 오랜시간이 걸립니다.</li>
+</ul>
+
+<h3 id="section-7">잡 트래커</h3>
+<ul>
+  <li>Job 이란 MapReduce 프로그램을 잡이라 부른다. 하나의 잡은 보통 하나 이상의 맵 태스크, 리듀스 태스크로 구성된다. 간단히 Task라 부르기도 한다.</li>
+  <li>잡트래커는 마스터의 서비스(프로세스)로써 사용자로부터 하둡 잡 실행 요청(MapReduce) 코드가 들어간 Jar파일, 입력데이터 위치, 출력데이터 위치등을 받아 이 잡의 태스크들을 해당 MapReduce 클러스터 내의 태스크 트래커들로 나누어 실행하고 그것들이 종료될 때 까지 관리하는 역할을 한다.</li>
+  <li>특정 태스크가 실패하면 다른 태스크 트래커에 그 태스크를 다시 실행하기도 하면서 잡Job의 성공적인 실행을 책입지게 됩니다.</li>
+  <li>입력 데이터와 출력데이터는 반드시 hdfs상에 존재해야한다. 태스크 트래커들은 앞서 언급된 것 처럼 데이터 노드들과 물리적인 서버에 존재하게 된다.</li>
+  <li>태스크 트래커(Task Tracker) 들은 앞서 언급된 것처럼 데이터노드들과 같은 물리적인 서버에 존재한다.</li>
+  <li>Task Tracker는 각 태스크마다 별개의 JVM을 할당하고 자식 프로세스로 실행한다.</li>
+  <li>Job Tracker의 기능 중 하나는 Speculative Execution 라는 기능이 있는대, 현저히 느린 태스크를 주시하다가 같은 내용으로 다른 노드에게 작업을 시키는 것.</li>
+  <li>잡 트래커는 HDFS의 마스터인 네임노드와 대부분 같은 서버에 위치하는데 네임노드와 마찬가지로 MapReduce프레임워크 전체에 단 하나만 존재하기 때문에 하둡 1.x나 이전 버전에서 역시 SPOF(Singloe Point Of Failure)가 됩니다.</li>
+  <li>Hadoop2.0 부터는 잡트래커나 태스크트래커가 아키텍쳐에 존재하지 않고 잡트레커 = (리소스 매니저,에플리케이션 마스터) 태스크 트레커 = 노드 매니저 입니다</li>
+  <li>네임노드와 데이터노드들처럼 잡 트래커는 주기적으로 태스크 트래커들에게 현재상태에 대한 보고를 받습니다. 이것 역시 HeartBeat라 합니다.</li>
+</ul>
+
+<h3 id="section-8">잡 트래커 인터페이스</h3>
+<ul>
+  <li>셸 커멘드</li>
+  <li>웹 인터페이스</li>
+</ul>
+
+<h3 id="job-scheduler">잡 스케쥴러 Job Scheduler</h3>
+<p><img src="/assets/posts/res/2017-04-30/job-scheduler.png" alt="Job scheduler" />
+ 1. 잡 스케줄러는 클러스터에 여러 잡을 동시에 실행하게 합니다.
+ 2. TaskScheduler클래스를 구현할 수 있다면 잡 스케줄러를 만들 수 있다.
+ 3. FIFO Scheduler, Capacity Scheduler, Fair Scheduler</p>
+
+<h3 id="mapreduce--">MapReduce에 적합한 분야</h3>
+
+<ol>
+  <li>병렬도가 굉장히 높은 단순 작업</li>
+  <li>로그 작업</li>
+  <li>머신러닝</li>
+</ol>
+
+<h3 id="section-9">부적합한 곳</h3>
+<ol>
+  <li>실시간 데이터 스트림 처리</li>
+  <li>반복실행이 필요한 곳</li>
+  <li>MapReduce 작업시에 네트워크 데이터 전송량이 너무큰 경우</li>
+</ol>
+
+<h2 id="section-10">과제</h2>
+<ul>
+  <li>구글랩이 2003 년에 발표한 ‘The Google File System’ 보기</li>
+  <li>구글랩이 2004 년에 발표한 ‘MapReduce: Simplified Data Processing on Large Cluster’ 보기</li>
+</ul>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>(스터디) 하둡.araboza - 1</title>
+	  <link>//%EC%8A%A4%ED%84%B0%EB%94%94-%ED%95%98%EB%91%A1-1</link>
+	  <author>drakejin</author>
+	  <pubDate>2017-04-28T00:00:00+09:00</pubDate>
+	  <guid>//%EC%8A%A4%ED%84%B0%EB%94%94-%ED%95%98%EB%91%A1-1</guid>
+	  <description><![CDATA[
+	     <p>[데이터 공작소] 하둡을 들어가기전의 기초 지식에 대해서 포스팅하였습니다. 기초 지식이라고 하기 이전에 약간의 진입장벽이있으니 주의해주시기 바랍니다. 그렇다고해서 전부를 암기하고 들어가는것이 아니므로 가볍게 읽어주세요. 감사합니다.</p>
+
+<h2 id="chapter-01--">Chapter 01 하둡과의 만남</h2>
+
+<h2 id="section">데이터</h2>
+<p>공개적으로 이용할 수 있는 데이터 역시 매년 증가하고 있다. 조직은 더 이상 자신들의 데이터로만 정보를 도출하면 안된다. 다른 조직의 정보 또한 이용할 수 있어야 한다.</p>
+
+<ul>
+  <li><a href="https://www.data.go.kr">한국 정부3.0 공공 데이터</a></li>
+  <li><a href="http://datalab.naver.com/opendata.naver">네이버 데이터 랩</a></li>
+  <li><a href="http://aws.amazon.com/publicdatasets/">아마존 웹 서비스 공공 데이터 셋</a></li>
+  <li><a href="http://infochimps.org/">Infochimps.org</a></li>
+  <li><a href="http://theinfo.org/">theinfo.org</a></li>
+</ul>
+
+<p>데이터는 널려있지만 분석하기위한 노력은 좋은 알고리즘 찾는것 보다 배가될 것이다.</p>
+
+<h2 id="section-1">데이터 저장소와 분석</h2>
+
+<h3 id="section-2">분산처리의 이점</h3>
+<ul>
+  <li>용량 100GB의 하드디스크를 전부 읽기위해서는 2시간 반이 걸린다.</li>
+  <li>하지만 용량 100GB의 하드디스크에서 1GB만 사용해서 읽을 때에는 2분이 걸린다.</li>
+  <li>100GB의 용량에 100GB의 파일을 저장하여 전부를 읽을 때 100GB 디스크 하나에 전부를 저장할것인가. 아니면 100개의 HDD 에 1GB씩 저장할것인가?</li>
+  <li>메모리적 효율을 따진다면 하나에 100GB를 저장</li>
+  <li>빠른 결과값을 원한다면 100개의 HDD에 1GB씩 저장하여 병렬처리하여 읽을 것이다.</li>
+</ul>
+
+<p>병렬처리 및 분산처리는 이런 장점을 가지고 있다. 하지만 이러한 분산처리는 여러가지 고려해야할 사항을 가지고 있다.</p>
+
+<h3 id="hdd-----">HDD로 부터 병렬로 읽고 쓰기위한 문제점</h3>
+<ol>
+  <li>하드웨어 장애 : 오래 사용하면 사용할 수록 장애가 발생할 확률이 높아지게 된다. 손상이 발생하게되면 저장되어있던 데이터는 사용하지 못하게 됨으로 백업 체계를 필요하게 된다.
+    <ul>
+      <li>RAID의 병렬 디스크 이용 : RAID의 방식에따라 HDD가 손상이 되었을 때 복구하는 방법이 다르다. 그렇기 때문에 hdfs는 RAID의 데이터 복구 프로세스를 이용하여 작동한다.</li>
+    </ul>
+  </li>
+  <li>대부분의 분석 작업은 분할된 데이터를 어떤 식으로든 결합할 필요가 있다.
+    <ul>
+      <li>분산된 HDD에서 저장했던 파일을 불러오기위해 100개의 디스크로부터 읽은 데이터를 병합할 필요가 있다. hdfs는 이 데이터를 불러올 때 MapReduce계산을 이용하여 리소스를 읽어온다.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="hdfs-">hdfs의 특징</h2>
+<ul>
+  <li>맵 리듀스는 일괄처리기</li>
+  <li>전체 데이터를 대상으로 ad-hoc 쿼리를 수행하면서 합리적인 시간 내에 결과를 보여준다. (빠르다. 그러나 spark 보다느리다.  hdfs 를 이용하기때문에 느림.)</li>
+  <li>맵리듀스는 애드혹 분석을 위해 일괄 처리 방식으로 전체 데이터셋을 분석할 필요가 있는 문제에 적합</li>
+  <li>맵리듀스는 데이터를 한 번 쓰면 여러 번 읽는 응용 프로그램에 적합하다.</li>
+</ul>
+
+<h3 id="section-3">맵 리듀스의 특징</h3>
+<ul>
+  <li>정규화된 데이터셋은 멥리듀스의 데이터 레코드 셋으로 부적합.</li>
+  <li>맵리듀스는 선형적으로 확장할 수 있는 프로그래밍 모델.</li>
+  <li>맵리듀스가 빛을 발하는 순간은 수백기가바이트의 데이터를 엑세스 하는 경우</li>
+  <li>맵리듀스 구현은 네트워크 대역폭을 보존하기 위해 네트워크 위상을 명시적으로 모델링 할 수 있다.</li>
+  <li>테스크들중에 부분장애(partial failure)가 발생하면 실패한 태스크만 재스캐줄링 한다.</li>
+  <li>맵 리듀스가 태스크 간에 상호 의존성이 없는 ‘무공유 아키텍처’ 이기 때문에 가능하다.
+&gt; 맵퍼의 출력은 리듀서로 전송되는데, 태스크가 상호 의존성이 없다는 전제로 장애를 처리하는 방식은 지나친 감이 있다. 
+&gt; 오히려 실패한 맵보다는 실패한 리듀서를 원상복구하는 데에 더 주의해야하는 데, 필수적인 맵 출력을 반드시 회수할 수 있어야 하고, 만일 아니라면 
+&gt; 관련된 모든 맵을 다시 복구시킴으로써 그 출력을 재생성해야 하기 때문이다. 따라서 프로그래머 관점으로는 태스크의 수행 순서는 중요하지 않다.</li>
+</ul>
+
+<h3 id="dbms">관계형 DBMS</h3>
+<ul>
+  <li>대규모 데이터 일괄 분석 상황일 경우.</li>
+  <li>데이터 접근 패턴이 탐색 위주일때 커다란 데이터셋을 만들어 주고 받는 상활 일 때 탐색하고 데이터 만드는 시간이 더 오래걸리게 된다.</li>
+  <li>데이터베이스의 많은 부분을 업데이트 할 때 B-Tree는 데이터베이스를 재구축하기위해 정렬/병합 을 사용하기 때문에 맵 리듀스보다 효율적이지 못함.</li>
+  <li>데이터베이스는 지속적으로 업데이트되는 데이터셋에 적합.</li>
+</ul>
+
+<h3 id="section-4">그리드 컴퓨팅</h3>
+
+<p><img src="/assets/posts/res/2017-04-28/grid.gif" alt="grid computing" />
+ 여러 자원의 컴퓨터가 한대의 컴퓨터처럼 동작하도록 작동하는 컴퓨팅</p>
+
+<ul>
+  <li>고성능 컴퓨팅, 그리드 컴퓨팅 커뮤니티는 메시지 전달 API를 사용해 수년동안 대규모 데이터 처리를 하는 중이다.</li>
+  <li>HPC는 SAN 으로 연결되어 공유 파일시스템에 엑세스 하는 기계장치의 클러스터로 작업을 분산한다.</li>
+  <li>HPC의 SAN은 계산중심적이기 때문에 노드가 더 큰 데이터 용량을 접근하려 할 때에는 네트워크 대역폭에 병목현상이 발생하게 된다.</li>
+  <li>맵리듀스는 계산 노드에 데이터를 함께 배치한다. 따라서 데이터가 로컬에 있기 때문에 데이터 접근에 빠를 수 밖에 없다.</li>
+  <li>‘데이터 지역성’ : 데이터가 로컬에 있으면 데이터 접근에 빠르다.</li>
+  <li>네트워크 대역폭은 데이터 센터 환경에서 가장 중요한 자원.</li>
+  <li>MPI는 프로그래머에게 사</li>
+</ul>
+
+<h3 id="section-5">자발적 컴퓨팅</h3>
+<ul>
+  <li><a href="https://ko.wikipedia.org/wiki/SETI@home">SETI@Home</a> 과 무엇이 다른가?</li>
+  <li><a href="https://ko.wikipedia.org/wiki/SETI@home">SETI@Home</a> 은 외계 지적 생명체 신호에 대한 전파망원경 데이터를 분석하기 위해 자원자의 컴퓨터가 유휴 상태일 때 자원자가 기증한 CPU 시간 동안 SETI@home 프로젝트를 수행한다.</li>
+  <li>차이점은 SETI@home은 CPU중심적이며, 전 세계 수십만개의 컴퓨터 위에서 실행되기에 적합하게 만들어 졌다.</li>
+  <li>맵리듀스는 데이터센터를 통해 몇분에서 몇 시간 정도 걸리는 작업을 신뢰할 수 있는 전용 하드웨어에서 수행되도록 설계되어졌다.</li>
+</ul>
+
+<h2 id="section-6">하둡의 역사</h2>
+<ul>
+  <li>텍스트 검색 아파치 루씬 =&gt; 웹 검색 엔진 아파치 너치 =&gt; 분산 처리 파일 시스템 아파치 하둡</li>
+  <li>하둡은 너치(오픈 소스 검색 엔진) 에서 시작되었다.</li>
+  <li>너치의 분산처리 파트로 분리된것이 바로 하둡.</li>
+  <li>야후의 도움으로 하둡은 진정으로 웹에 적용할 만한 기술로 빠르게 성장하였다.</li>
+  <li>0.4 버전으로 2006년 1월경 하둡프로젝트는 아파치 서브 프로젝트로 출발함.</li>
+  <li>0.4 버전에서는 두 가지 핵심 컴포넌트인 하둡 분산 파일시스템과 맵리듀스가 있었고, 이 컴포넌트들을 이용해서 논문으로만 간접 경험했던 기능과 실험들을 체험할 수 있었다.</li>
+</ul>
+
+<h2 id="section-7">검색엔진 만들기</h2>
+<ol>
+  <li>크롤러(Crawler)는 웹 서버로 부터 페이지를 다운로드 하고</li>
+  <li>웹맵(WebMap)은 수집된 웹의 그래프를 구축하고</li>
+  <li>인덱서(Indexer)는 최적의 페이지로 역 색인을 구축한다. (url과 함께)</li>
+  <li>런타임(Runtime)은 사용자 쿼리를 처리한다.</li>
+  <li>웹맵에는 웹 링크에 해당하는 대략 1조개의 연결선 edge와 고유한url에 해당하는 1000억개의 정점vertex로 구성되는 그래프 이다.</li>
+  <li>거대한 그래프를 생성하고 분석하는 것은 수많은 컴퓨터로 오랫동안 처리해야 한다.</li>
+</ol>
+
+<h2 id="section-8">아파치 하둡과 하둡 생태계</h2>
+
+<p><img src="/assets/posts/res/2017-04-28/hadoop-projects.jpg" alt="apache solution" />
+<img src="/assets/posts/res/2017-04-28/hadoop-system.png" alt="apache system" /></p>
+
+<ol>
+  <li>공통 : 일반적인 I/O(직렬화, 자바RPC, 영속 Persistent데이터 구조)를 위한 컴포넌트와 인터페이스 집합</li>
+  <li>에이브로 Avro : 교차언어 RPC와 영속성 데이터 스토리지를 위한 데이터 직렬화 시스템</li>
+  <li>맵리듀스 : 범용 컴퓨터의 커다란 클러스터에서 수행되는 분산 데이터 처리 모델과 실행환경</li>
+  <li>HDFS 범용 컴퓨터로 된 커다란 클러스터에서 수행되는 분산 파일 시스템</li>
+  <li>피그 : 대규모 데이터셋 탐색용 데이터 흐름 언어 data flow language 와 실핼환경. HDFS와 맵 리듀스 클러스터에서 수행된다.</li>
+  <li>하이브 : 분산데이터 웨어하우스 Datawarehouse, HDFS에 저장된 데이터를 관리하고 데이터 쿼리를 위해 SQL기반 쿼리 언어를 제공한다.(런타임 엔진에 의해 맵리듀스로 변환됨)</li>
+  <li>HBase : 분산 컬럼지향 데이터베이스. 스토리지로 hdfs를 사용함. 맵리듀스를 이용한 일괄 처리 방식의 계산과 랜덤 읽기가 가능한 포인트 쿼리 방식 모두 지원한다.</li>
+  <li>주키퍼 Zookeeper : 다수 컴퓨터로 분산 처리되는 고가용성 조정 서비스 . 분산 응용프로그램을 구축하기위해 사용될 수 있는 분산 락 같은 프리미티브를 제공함</li>
+  <li>sqoop : 관계형 데이터베이스와 hdfs간 데이터를 효율적으로 이동시키기위한 도구</li>
+  <li>오지 : 하둡 잡(맵 리듀스, 피그, 하이브, 스쿱 잡 포함)의 워크플로우를 실행하고 스케줄링을 위한 서비스</li>
+</ol>
+
+<h2 id="section-9">빅데이터 용어</h2>
+
+<h3 id="section-10">빅데이터의 정의</h3>
+<ol>
+  <li>서버 한대로 처리할 수 없는 규모의 데이터</li>
+  <li>기존이 소프트웨어로는 처리할 수 없는 규모의 데이터</li>
+  <li>3V or 4V (Volume 데이터의 크기, Velocity 데이터의 생산속도, Variety 데이터의다양성, Variability 데이터의 가변성)</li>
+</ol>
+
+<h3 id="crawling">크롤링 Crawling</h3>
+<ul>
+  <li>웹 문서들을 다운로드 하는 동작.</li>
+  <li>다운로드한 웹 문서를 인덱싱 하는 처리</li>
+</ul>
+
+<h3 id="scraping">스크랩핑 Scraping</h3>
+<ul>
+  <li>웹 문서들중 유용한 정보만 긁는 동작</li>
+  <li>유용한 정보들을 긁어서 2차 정보를 가공하는 처리</li>
+</ul>
+
+<h3 id="section-11">페이지랭크</h3>
+<ul>
+  <li>구글설립자인 래리페이지와 세르게이 브린이 발표한 1999년에 발표한 검색알고리즘</li>
+  <li>웹 페이지들의 중요도를 계산해주며 구글 검색 엔진이 당시 다른 엔진보다 품질을 높일 수 있는 바탕이 됨.</li>
+</ul>
+
+<h3 id="section-12">빅데이터 시스템의 구성</h3>
+
+<p><img src="/assets/posts/res/2017-04-28/bigdataarchitecture.png" alt="Big data System Architecure" /></p>
+
+<p>-Big data System Workflow 
+   &gt; 수집-&gt; 처리-&gt; 저장-&gt; 분석-&gt; 활용</p>
+
+<h3 id="section-13">각종오픈소스 소개</h3>
+<ul>
+  <li>로그데이터 분석Flume, Chukwa</li>
+  <li>저장/처리 모듈 HDFS, MapReduce (MapReduce프로그래밍을 하지 않겠다면 Hive, Pig라는 언어로도 할 수 있다.)</li>
+  <li>처리데이터 엑세스 모듈 : 별다른 처리 없이 정형화해서 저장하기 원한다면 RDBMS에다가. 그게 아니라면 sqoop, 비정형이라면 nosql(HBase, MongoDB,Casandra)</li>
+  <li>검색엔진 : Lucene, Solr, ElasticSearch</li>
+  <li>빅데이터워크플로우 관리 : Cascading, Oozie, Azkaban, Ambrose</li>
+  <li>데이터 시각화 모듈 : Matlab, R, D3, R-Hadoop</li>
+</ul>
+
+<h2 id="section-14">과제</h2>
+<ol>
+  <li>HDFS가 이용하는 RAID방식</li>
+  <li>RAID 방식의 종류</li>
+  <li>ad-hoc쿼리란?</li>
+  <li>B-Tree가 효율적이지 못하는 상황은 언제인가?(정렬, 병합에 비효율적인가? 정말로?)</li>
+  <li>정규표현식에 대해 배워보자</li>
+  <li>지역연산은 무엇이고 비지역 연산은 무엇인가?</li>
+  <li>Scale in, Scale out 이란?</li>
+  <li>HPC는 뭐하는곳이고 SAN은 무슨 뜻인가?</li>
+  <li>네트워크 위상이란?</li>
+  <li>직렬화, 자바RPC, 영속 Persistent 데이터 구조 란?</li>
+</ol>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>(스터디) 하둡.araboza - Intro</title>
+	  <link>//%EC%8A%A4%ED%84%B0%EB%94%94-%ED%95%98%EB%91%A1-intro</link>
+	  <author>drakejin</author>
+	  <pubDate>2017-04-21T00:00:00+09:00</pubDate>
+	  <guid>//%EC%8A%A4%ED%84%B0%EB%94%94-%ED%95%98%EB%91%A1-intro</guid>
+	  <description><![CDATA[
+	     <p>[데이터 공작소] 하둡공부하기전 Intro 어떻게 공부할것인가! 참고서적 (Do it 하둡 프로그래밍 및 Hadoop완벽가이드 책을 참고하였습니다.</p>
+
+<h2 id="hadoop-">Hadoop 완벽가이드</h2>
+<ul>
+  <li>출판사 : O’Reilly , 한빛미디어</li>
+  <li>저자 : 톰화이트</li>
+  <li>역자 : 심탁길, 김우현</li>
+  <li>한줄 평 : 챕터2 예제 돌릴 데이터 어디서 다운받냐구요!!! 
+으아아아아아악!!!!!!!!!!!!!!!!!!!!!!!!!!!! ( 답변을 받았다. )</li>
+  <li>챕터 2 예제는 실습예제에 링크를 걸어 놓았습니다. 참고해주세용.</li>
+</ul>
+
+<h2 id="section">소스 위치</h2>
+<ul>
+  <li><a href="https://github.com/drake-jin/hadoop-study">직접 작성한 소스코드 drake-jin@git/hadoop-study</a></li>
+</ul>
+
+<h2 id="do-it-">Do it 하둡프로그래밍</h2>
+<ul>
+  <li>출판사 : 이지스퍼블리싱</li>
+  <li>지음 : 한기용</li>
+  <li>한줄 평: 쉽게 따라할 수 있어서 좋습니다. 꼭 사세요.</li>
+</ul>
+
+<h2 id="section-1">책 소개</h2>
+<ul>
+  <li>2장은 맵리듀스를 소개</li>
+  <li>3장은 하둡의 파일 시스템</li>
+  <li>4장은 하둡 I/O에 대해서</li>
+  <li>2,3,4 장은 데이터의 부결성, 압축, 직렬화, 파일 기반의 데이터 구조 등이 주요 내용이다.</li>
+  <li>5,6,7,8장은 맵리듀스의 고급 기능에 대해 배운다.</li>
+  <li>9,10 장은 하둡 관리자를 위한것이다.</li>
+  <li>11,12 장은 HDFS와 맵 리듀스 기반의 분석 플랫폼인 피그와 하이브를 설명한다.</li>
+  <li>13,14,15 는 HBase, Zookeeper, Sqoop</li>
+  <li>16장은 사례 연구들을 모아 놓았다.</li>
+</ul>
+
+<h2 id="section-2">실습예제</h2>
+<ul>
+  <li><a href="https://s3.amazonaws.com/hadoopkr/source.tar.gz">두잇 하둡프로그래밍:소스와 프로젝트 파일</a>:</li>
+  <li><a href="https://files.secureserver.net/public_file.php?page_action=display_file&amp;hash=0sMasskTwJkow7">두잇 하둡프로그래밍:소스와 프로젝트 파일</a></li>
+  <li><a href="(https://s3.amazonaws.com/hadoopkr/data.tar.gz">두잇 하둡프로그래밍:학습 데이터 파일</a></li>
+  <li><a href="ftp://ftp.ncdc.noaa.gov/pub/data/noaa/">Hadoop 완벽가이드의 Chapter 2예제</a></li>
+</ul>
+
+<h2 id="section-3">참고 사이트</h2>
+<ul>
+  <li><a href="http://www.kaggle.com">데이터 마이닝 및 딥러닝 등등 kaggle.com</a></li>
+</ul>
+
+<h2 id="section-4">에러 극복</h2>
+<ul>
+  <li>시스템 껏다 키면 /tmp이하 디렉토리 날라가니까…   <a href="http://egloos.zum.com/entireboy/v/4821605">참고하세요.</a></li>
+</ul>
+
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>

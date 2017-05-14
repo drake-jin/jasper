@@ -11,6 +11,8 @@ class: 'post-template'
 <!-- Everything inside the #post tags pulls data from the post -->
 <!-- #post -->
 
+
+
 <header class="main-header post-head {% if page.cover %}" style="background-image: url({{ site.baseurl }}{{ page.cover }}) {% else %}no-cover{% endif %}">
     <nav class="main-nav {% if page.cover %} overlay {% endif %} clearfix">
         {% if page.logo %}<a class="blog-logo" href="{{ site.baseurl }}"><img src="{{ site.baseurl }}{{ page.logo }}" alt="Blog Logo" /></a>{% endif %}
@@ -53,27 +55,35 @@ class: 'post-template'
 
             <!-- Everything inside the #author tags pulls data from the author -->
             <!-- #author-->
-
-            {% if site.image %}
+        {% for category in page.categories %}
+            {% if site.data.authors[category].image %}
             <figure class="author-image">
-                <a class="img" href="{{ site.baseurl }}author/{{ site.nickname }}" style="background-image: url({{ site.baseurl }}{{ site.image }})"><span class="hidden">{{ page.author }}'s Picture</span></a>
+                <a class="img" href="{{ site.baseurl }}author/{{ site.data.authors[category].nickname }}" style="background-image: url({{ site.data.authors[category].image }})">
+                    <span class="hidden">{{ site.data.authors[category].nickname }}'s 사진</span>
+                </a>
             </figure>
             {% endif %}
 
             <section class="author">
-                <h4><a href="{{ site.baseurl }}author/{{ site.nickname }}">{{ site.author }}</a></h4>
-                
-                {% if site.bio %}
-                    <p> {{ site.bio }}</p>
+                <h4><a href="{{ site.baseurl }}author/{{ site.data.authors[category].nickname }}">{{ site.data.authors[category].nickname }}</a></h4>
+
+                {% if site.data.authors[category].bio %}
+                <p> {{ site.data.authors[category].bio }}</p>
                 {% else %}
-                    <p>Read <a href="{{ site.baseurl }}author/{{ site.nickname }}">more posts</a> by this author.</p>
+                <p>Read <a href="{{ site.baseurl }}author/{{ site.data.authors[category].nickname }}">more posts</a> by this author.</p>
                 {% endif %}
                 <div class="author-meta">
-                    {% if site.location %}<span class="author-location icon-location"> {{ site.location }}</span>{% endif %} 
-                    {% if site.url %}<span class="author-link icon-link"><a href="{{ site.url }}"> {{ site.short_url }}</a></span>{% endif %} 
+                    {% if site.data.authors[category].location %}
+                    <span class="author-location icon-location">
+                        {{ site.data.authors[category].location }}
+                    </span>
+                    {% endif %} 
+                    {% if site.data.authors[category].url and site.data.authors[category].short_url %}
+                    <span class="author-link icon-link"><a href="{{ site.data.authors[category].url }}">{{ site.data.authors[category].short_url }}</a></span>
+                    {% endif %}
                 </div>
-            </section>
-
+            </section> 
+        {% endfor %}
             <!-- /author  -->
 
             <section class="share">

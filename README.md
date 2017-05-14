@@ -10,6 +10,18 @@ You might well ask at this point why bother making a new Casper's clone?
 Although this is inspired by Kasper, there are several **additional** features which make this port closer 
 to the original theme. Besides, I have recently updated it to match the current version of the theme.
 
+## How to Install
+
+``` bash
+$ vi Gemfile #release comments
+$ bundle install
+$ bundle exec jekyll build 
+$ bundle exec jekyll serve
+
+
+
+```
+
 
 ## Live demo
 
