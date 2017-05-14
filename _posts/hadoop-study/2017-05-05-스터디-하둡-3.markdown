@@ -1,0 +1,21 @@
+---
+layout: post
+title: (스터디) 하둡.araboza - 3
+category: hadoop
+image: /assets/posts/res/2017-05-05/hadoop.png
+tags: [hadoop, hdfs, mapreduce]
+---
+[데이터공작소] 설치는 구글에 "하둡 의사분산노드 설치"라는 검색어로 직접 찾아서 버전에 맞도록 설치합니다. 본 블로그에서 사용한 버전은  1.x 버전을 사용하였습니다. 
+
+
+## 의사분산 노드 설치하기
+ - 각 버전에 맞추어 직접 설치하길 바란다.
+ - 본 블로그에서는 1.x 버전에서 작업을 하였다.
+ - 참고는 Do it 하둡 프로젝트의 내용을 참고하였다.
+ - 설치할 때 hdfs-core.xml 에서 data.tmp 의 경로를 /tmp로 설정하지 않는것을 권장한다.
+ - 재부팅시 마다 매번 hdfs를 새로 생성해야하기때문.
+
+1. ssh server를 오픈해야함. 보통 desktop mode의 ubuntu에서는 ssh서버를 Default로 열어놓지 않으니 직접 열어서 할것.
+2. jps했을 때 의사분산모드의 경우 6개의 프로세스(jps포함)가 올바르게 잘 뜨는지 확인할것.
+
+
