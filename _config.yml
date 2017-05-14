@@ -16,11 +16,11 @@ author: "drakejin"
 
 google_analytics: UA-90708702-1
 # Disque
-disque: drake-jin-github-io.disqus.com # ex. httpdongchuangithubio.disqus.com
+disqus: drake-jin-github-io # ex. httpdongchuangithubio
 
 # edit baseurl to simply '/' if using as your personal page (instead of a project page)
 baseurl: /
-
+url: blog.drakejin.me
 
 
 # Permalinks
