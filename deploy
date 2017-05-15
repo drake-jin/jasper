@@ -1,0 +1,6 @@
+bundle exec jekyll build
+cd ../drake-jin.github.io
+git add .
+git commit -m "Auto deploy"
+git push origin master
+cd ../jasper
