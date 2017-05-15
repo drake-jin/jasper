@@ -1,0 +1,15 @@
+current directory: /home/likemilk/workspace/drake-jin.github.io/vendor/ruby/2.3.0/gems/posix-spawn-0.3.13/ext
+/usr/bin/ruby2.3 -r ./siteconf20170515-52185-1tt7dng.rb extconf.rb 
+creating Makefile
+
+current directory: /home/likemilk/workspace/drake-jin.github.io/vendor/ruby/2.3.0/gems/posix-spawn-0.3.13/ext
+make "DESTDIR=" clean
+
+current directory: /home/likemilk/workspace/drake-jin.github.io/vendor/ruby/2.3.0/gems/posix-spawn-0.3.13/ext
+make "DESTDIR="
+compiling posix-spawn.c
+linking shared-object posix_spawn_ext.so
+
+current directory: /home/likemilk/workspace/drake-jin.github.io/vendor/ruby/2.3.0/gems/posix-spawn-0.3.13/ext
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 posix_spawn_ext.so ./.gem.20170515-52185-sb7mpu
