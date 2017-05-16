@@ -17,7 +17,7 @@ logo: assets/images/logo.png
 
 google_analytics: UA-90708702-1
 # Disque
-disqus: drake-jin-github-io # ex. httpdongchuangithubio
+disqus: drake-jin.github.io # ex. httpdongchuangithubio
 github_url: https://github.com/drake-jin
 repository: drake-jin/drake-jin.github.io
     # edit baseurl to simply '/' if using as your personal page (instead of a project page)

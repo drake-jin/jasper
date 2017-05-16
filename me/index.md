@@ -71,6 +71,7 @@ current: me
 ### 개발이야기해요.
   개발이야기가 면접의 목적이든 심심풀이의 목적이든 관계없이 모두 환영합니다.
 개발이야기 개발자개그 다 좋아합니다. (사실.... IT 관련 제외하고는 말을 잘 못해서.... )
+
  - [페이스북](https://facebook.com/drakejin)
  - [Slideshare](https://www.slideshare.net/ssuser67b08e)
  - 카카오톡:dydwls121200
