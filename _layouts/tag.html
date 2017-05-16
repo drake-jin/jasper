@@ -7,14 +7,17 @@ logo: 'assets/images/ghost.png'
 current: tag
 ---
 
-<!-- < dynamically overriding backgrounds for tags as well as descriptions -->
-{% if page.url contains 'fables' %}
-   {% assign tag_description='A series of short stories that make you think.' %}
-{% elsif page.url contains 'speeches' %}
-    {% assign new_cover='assets/images/cover7.jpg' %}
-    {% assign tag_description='Some of the greatest words ever spoken.' %}
-{% elsif page.url contains 'fiction' %}
-    {% assign new_cover='assets/images/cover1.jpg' %}
+<!-- 
+    To do list : tags 나 뭐 ... 음.. ... _data 에서 셋팅할 수 있도록 만들어보자
+    으아아악 여기에도 직접 .... 이미지를... 때려 넣어 주어야 한다니... 이 새끼야... -->
+{% if page.url contains 'docker' %}
+    {% assign new_cover='assets/images/post/tags/docker.png' %}
+    {% assign tag_description='Immutable Infrastructure를 구현해보겠어용!' %}
+
+{% elsif page.url contains 'hadoop' %}
+    {% assign new_cover='assets/images/post/tags/hadoop.png' %}
+    {% assign tag_description='클러스터링서버 기가막히게 만들어보아용!' %}
+
 {% endif %}
 
 <!-- < default}} -->
@@ -23,9 +26,11 @@ current: tag
 <!-- If we have a tag cover, display that - else blog cover - else nothing -->
 <header class="main-header tag-head {% if page.cover %}" style="background-image: url({{ site.baseurl }}{% if new_cover %}{{ new_cover }}{% else %}{{ page.cover }}{% endif%}) {% else %}no-cover{% endif %}">
     <nav class="main-nav overlay clearfix">
-        {% if page.logo %}<a class="blog-logo" href="{{ site.baseurl }}"><img src="{{ site.baseurl }}{{ page.logo }}" alt="Blog Logo" /></a>{% endif %}
+        <a class="blog-logo" href="{{ site.baseurl }}">
+            <img src="{{ site.baseurl }}{{ site.logo }}" alt="Blog Logo" />
+        </a>
         {% if page.navigation %}
-            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+        <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
         {% endif %}
     </nav>
     <div class="vertical">

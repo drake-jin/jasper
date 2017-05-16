@@ -10,14 +10,18 @@ current: author
 ---
 <!-- < default}} -->
 <!-- The tag above means - insert everything in this file into the [body] of the default.hbs template -->
-
+<!-- Todo List Author에 맞추어서 이미지를 준비해주자 -->
 <!-- The big featured header -->
 
 <!-- Everything inside the #author tags pulls data from the author -->
 <!-- #author  -->
+
     <header class="main-header author-head {% if page.cover %}" style="background-image: url({{ site.baseurl }}{{ page.cover }}) {% else %}no-cover{% endif %}">
         <nav class="main-nav overlay clearfix">
-            {% if page.logo %}<a class="blog-logo" href="{{ site.baseurl }}"><img src="{{ site.baseurl }}{{ page.logo }}" alt="Blog Logo" /></a>{% endif %}
+            <a class="blog-logo" href="{{ site.baseurl }}">
+                <img src="{{ site.baseurl }}{{ site.logo }}" alt="Blog Logo" />
+            </a>
+            
             {% if page.navigation %}
                 <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
             {% endif %}

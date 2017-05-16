@@ -1,3 +1,4 @@
+rm -rf ../drake-jin.github.io/*
 bundle exec jekyll build
 bundle exec jekyll serve
 

@@ -649,13 +649,13 @@ body.nav-opened .nav {
 }
 .nav li a {
     text-decoration: none;
-    line-height: 1.4;
+   /* line-height: 1.4; */
     font-size: 1.4rem;
     display: block;
-    padding: 0.6rem 4%;
+   /* padding: 0.6rem 4%; */
     overflow: hidden;
     white-space: nowrap;
-    text-overflow: ellipsis;
+   /* text-overflow: ellipsis; */
 }
 .nav li a:after {
     display: inline-block;
