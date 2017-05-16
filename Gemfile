@@ -8,3 +8,5 @@ gem 'rouge', '~> 1.10', '>= 1.10.1'
 gem "github-pages", "~> 66"
 gem "jekyll-deploy"
 gem "rake", "~> 10.1.1"
+gem "jekyll-github-metadata"
+gem "jekyll-geo-pattern"

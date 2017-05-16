@@ -12,6 +12,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
+    color (1.8)
     colorator (0.1)
     concurrent-ruby (1.0.5)
     ethon (0.10.1)
@@ -21,6 +22,8 @@ GEM
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
     gemoji (2.1.0)
+    geo_pattern (1.2.1)
+      color (~> 1.5)
     github-pages (66)
       RedCloth (= 4.2.9)
       github-pages-health-check (= 1.1.0)
@@ -67,6 +70,9 @@ GEM
       coffee-script (~> 2.2)
     jekyll-deploy (0.0.2)
     jekyll-feed (0.4.0)
+    jekyll-geo-pattern (0.4.1)
+      geo_pattern (~> 1.2.1)
+      jekyll
     jekyll-gist (1.4.0)
       octokit (~> 4.2)
     jekyll-github-metadata (1.9.0)
@@ -138,6 +144,8 @@ DEPENDENCIES
   github-pages (~> 66)
   jekyll (~> 3.0.3)
   jekyll-deploy
+  jekyll-geo-pattern
+  jekyll-github-metadata
   kramdown (~> 1.8)
   pygments.rb (~> 0.6.3)
   rake (~> 10.1.1)
