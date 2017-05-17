@@ -1,9 +1,12 @@
 ---
 layout: post
-title: (스터디) 하둡.araboza - 3
-category: hadoop
-image: /assets/posts/res/2017-05-05/hadoop.png
-tags: [hadoop, hdfs, mapreduce]
+cover: 'assets/images/post/tags/hadoop.png'
+title: (스터디) 하둡.araboza - Intro
+date: 2017-04-21 00:00:00
+tags: hadoop
+subclass: 'post tag-hadoop'
+categories: 'drakejin'
+navigation: True
 ---
 [데이터공작소] 설치는 구글에 "하둡 의사분산노드 설치"라는 검색어로 직접 찾아서 버전에 맞도록 설치합니다. 본 블로그에서 사용한 버전은  1.x 버전을 사용하였습니다. 
 

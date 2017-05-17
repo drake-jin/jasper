@@ -1,9 +1,12 @@
 ---
 layout: post
+cover: 'assets/images/post/tags/docker.png'
 title: (스터디) 도커.araboza - 6-2
-category: docker
-image: /assets/posts/res/2017-04-19/docker.png
-tags: [docker, virtualization, container, Immutable Infrastructure]
+date: 2017-04-19 00:00:00
+tags: docker
+subclass: 'post tag-docker'
+categories: 'drakejin'
+navigation: True
 ---
 [데이터 공작소] 데이터 공작소는 도커는 어떻게 공부할것인가! 처음 시작하는 도커에 대해 공부를 시작합니다.
 
@@ -32,8 +35,8 @@ $ sudo docker run -i -t --name {container_name} -v {data_volume_path} {image_nam
 
 #### 실행화면
 
-![docker volume](./images/volume.png)
-![docker file create](./images/container_volumes.png)
+![docker volume](/assets/images/post/2017-04-19/volume.png)
+![docker file create](/assets/images/post/2017-04-19/container_volumes.png)
 
 # Host 에서 만들어진 data volume 으로 열람하기
 sudo 권한이 아니고서는 만들어진 data_volume으로 탐색이 불가능하다.
@@ -51,8 +54,8 @@ $ sudo docker insect -f "{{ .Mount }}" hello-volume
   ```
 #### 실행화면(1.9 이상의 실습화면)
 
-![docker volume](./images/inspect.png)
-![docker ls](./images/ls.png)
+![docker volume](/assets/images/post/2017-04-19/inspect.png)
+![docker ls](/assets/images/post/2017-04-19/ls.png)
 
 # 두 컨테이너와 호스트의 디렉토리를 공유하자
   1. 컨테이너를 생성하고 데이터 볼륨을 설정한다. 그리고 생성된 컨테이너의 /data 디렉토리에 파일을 생성하고 빠져나온다
@@ -63,7 +66,7 @@ $ sudoc docker run -it --name {container_name} -v {host_dir_path}:{container_dir
 
 #### 실행화면 
 
-![volumes](./images/share_volume.png)
+![volumes](/assets/images/post/2017-04-19/share_volume.png)
 
 
 # 볼륨 컨테이너 사용하기
@@ -85,7 +88,7 @@ $ sudo docker run -it --volumes-from hello-volume --name using-volume ubuntu /bi
  ```
 #### 실행화면
 
-![container_volumes](./images/container_volume.png)
+![container_volumes](/assets/images/post/2017-04-19//container_volume.png)
 
 
 
@@ -118,9 +121,9 @@ $ sudo docker run -it --name debootstrap trusty /bin/bash
 
 #### 실행화면 
 
-![install debootstrap](./images/apt-get.png)
-![install trusty](./images/debootstrap.png)
-![importing & extract on docker](./images/tar.png)
+![install debootstrap](/assets/images/post/2017-04-19/apt-get.png)
+![install trusty](/assets/images/post/2017-04-19/debootstrap.png)
+![importing & extract on docker](/assets/images/post/2017-04-19/tar.png)
 
 ## Docker in Docker
 
@@ -150,9 +153,9 @@ $ sudo docker run -it busybox:latest /bin/sh
 
 #### 실행화면 
 
-![dind](./images/dind.png)
-![dind container](./images/dind_container.png)
-![busybox](./images/busybox.png)
+![dind](/assets/images/post/2017-04-19/dind.png)
+![dind container](/assets/images/post/2017-04-19/dind_container.png)
+![busybox](/assets/images/post/2017-04-19/busybox.png)
 
 > 컨테이너 구성은 다음과 같이 되어있습니다.
 > 호스트 -> dind 컨테이너 -> busy box 컨테이너 

@@ -1,9 +1,12 @@
 ---
 layout: post
+cover: 'assets/images/post/tags/hadoop.png'
 title: (스터디) 하둡.araboza - Intro
-category: hadoop
-image: /assets/posts/res/2017-04-21/hadoop.png
-tags: [hadoop, mapreduce, hdfs]
+date: 2017-04-21 00:00:00
+tags: hadoop
+subclass: 'post tag-hadoop'
+categories: 'drakejin'
+navigation: True
 ---
 [데이터 공작소] 하둡공부하기전 Intro 어떻게 공부할것인가! 참고서적 (Do it 하둡 프로그래밍 및 Hadoop완벽가이드 책을 참고하였습니다.
 

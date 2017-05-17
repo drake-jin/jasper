@@ -1,9 +1,12 @@
 ---
 layout: post
+cover: 'assets/images/post/tags/hadoop.png'
 title: (스터디) 하둡.araboza - 6
-category: hadoop
-image: /assets/images/posts/hadoop.png
-tags: [hadoop,mapreduce,hdfs]
+date: 2017-05-08 00:00:00
+tags: hadoop
+subclass: 'post tag-hadoop'
+categories: 'drakejin'
+navigation: True
 ---
 [데이터공작소] 하둡의 WordCount 예제가 아닌 약간의 응용을 해보는 예제를 체험합니다.
 

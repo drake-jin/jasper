@@ -1,5 +1,16 @@
 ---
 layout: post
+cover: 'assets/images/post/tags/docker.png'
+title: (스터디) 도커.araboza - 6-1
+date: 2017-04-19 00:00:00
+tags: docker
+subclass: 'post tag-docker'
+categories: 'drakejin'
+navigation: True
+---
+
+---
+layout: post
 title: (스터디) 도커.araboza - 6-1
 category: docker
 image: /assets/posts/res/2017-04-19/docker.png

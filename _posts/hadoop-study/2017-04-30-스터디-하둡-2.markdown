@@ -1,9 +1,12 @@
 ---
 layout: post
+cover: 'assets/images/post/tags/hadoop.png'
 title: (스터디) 하둡.araboza - 2
-category: hadoop
-image: /assets/posts/res/2017-04-30/hadoop-work.png
-tags: [hadoop, mapreduce, hdfs]
+date: 2017-04-30 00:00:00
+tags: hadoop
+subclass: 'post tag-hadoop'
+categories: 'drakejin'
+navigation: True
 ---
 [데이터공작소] 멥리듀스와 하둡 그리고 hdfs에 대해서 알아봅니다.
 

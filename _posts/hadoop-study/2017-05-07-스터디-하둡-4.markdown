@@ -1,9 +1,12 @@
 ---
 layout: post
+cover: 'assets/images/post/tags/hadoop.png'
 title: (스터디) 하둡.araboza - 4
-category: hadoop
-image: /assets/posts/res/2017-05-07/hadoop.png
-tags: [hadoop, hdfs, mapreduce]
+date: 2017-05-07 00:00:00
+tags: hadoop
+subclass: 'post tag-hadoop'
+categories: 'drakejin'
+navigation: True
 ---
 [데이터공작소] 하둡 스터디 자세한 내용은 소스에 주석을 달아 놓았습니다. 소스를 참고해주시기 바랍니다.
 

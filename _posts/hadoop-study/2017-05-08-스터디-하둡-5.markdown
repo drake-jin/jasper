@@ -1,9 +1,12 @@
 ---
 layout: post
+cover: 'assets/images/post/tags/hadoop.png'
 title: (스터디) 하둡.araboza - 5
-category: hadoop
-image: /assets/posts/res/2017-05-08/hadoop.png
-tags: [hadoop, hdfs, mapreduce]
+date: 2017-05-08 00:00:00
+tags: hadoop
+subclass: 'post tag-hadoop'
+categories: 'drakejin'
+navigation: True
 ---
 [데이터공작소]하둡.araboza - 5 에서 진행했던 소스를 좀 더 자세히 살펴보는 글입니다. 이번 챕터를 통해 맵 리듀스에 대해 자세히 알아보는 시간을 갖도록 합니다. 
 

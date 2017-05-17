@@ -1,9 +1,12 @@
 ---
 layout: post
+cover: 'assets/images/post/tags/docker.png'
 title: (스터디) 도커.araboza - 4
-category: docker
-image: /assets/posts/res/2017-04-04/docker.png
-tags: [docker, virtualization, container, Immutable Infrastructure, pyrasis]
+date: 2017-04-12 00:00:00
+tags: docker
+subclass: 'post tag-docker'
+categories: 'drakejin'
+navigation: True
 ---
 [데이터 공작소] 데이터 공작소는 도커는 어떻게 공부할것인가! 처음 시작하는 도커에 대해 공부를 시작합니다. 이 문서의 저작권은 ![pyrasis.com](http://pyrasis.com/private/2014/11/30/publish-docker-for-the-really-impatient-book) 여기에 있습니다. 혼자 공부하려고 글들의 내용을 참고하였습니다. 문제시 삭제하겠습니다. 
 

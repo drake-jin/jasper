@@ -1,9 +1,12 @@
 ---
 layout: post
+cover: 'assets/images/post/tags/hadoop.png'
 title: (스터디) 하둡.araboza - 1
-category: hadoop
-image: /assets/posts/res/2017-04-28/grid.gif
-tags: [hadoop, mapreduce, hdfs, distributed processing, raid]
+date: 2017-04-28 00:00:00
+tags: hadoop
+subclass: 'post tag-hadoop'
+categories: 'drakejin'
+navigation: True
 ---
 [데이터 공작소] 하둡을 들어가기전의 기초 지식에 대해서 포스팅하였습니다. 기초 지식이라고 하기 이전에 약간의 진입장벽이있으니 주의해주시기 바랍니다. 그렇다고해서 전부를 암기하고 들어가는것이 아니므로 가볍게 읽어주세요. 감사합니다.  
 
