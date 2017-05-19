@@ -7,7 +7,7 @@ paginate: 5
 language: 'utf-8'
 
 # Website info
-name: '데이터공작소(공사중 >    3 < )'
+name: '데이터공작소'
 description: "데이터 분석은 잘 못하지만, 데이터 분석할 수 있게 도와드리겠어요!"
 
 

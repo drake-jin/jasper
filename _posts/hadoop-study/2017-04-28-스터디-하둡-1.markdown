@@ -61,7 +61,7 @@ navigation: True
 
 ### 그리드 컴퓨팅
 
-![grid computing](/assets/posts/res/2017-04-28/grid.gif)
+![grid computing](/assets/images/post/2017-04-28/grid.gif)
  여러 자원의 컴퓨터가 한대의 컴퓨터처럼 동작하도록 작동하는 컴퓨팅
 
  - 고성능 컴퓨팅, 그리드 컴퓨팅 커뮤니티는 메시지 전달 API를 사용해 수년동안 대규모 데이터 처리를 하는 중이다.
