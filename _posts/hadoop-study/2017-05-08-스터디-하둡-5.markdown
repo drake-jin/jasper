@@ -95,7 +95,7 @@ class Mapper{
 
 ## MapReduce의 기본 자료형 및 변수들
 
-![wrapping variables](/assets/posts/res/2017-05-08/wrapping-variables.png)
+![wrapping variables](/assets/images/post/2017-05-08/wrapping-variables.png)
 
 ### Writable 인터페이스
  - 기본적으로 이 인터페이스는 직렬화/역직렬화(Serialization/Deserialization) 을 구현하는데 사용되는 메소드들을 갖고 있다.
@@ -294,7 +294,7 @@ public class HashPartitioner<K, V> extends Partitioner<K, V>{
 
 ### 셔플링
  
- ![Shuffling & sorting](/assets/post/2017-05-08/shuffling-sorting.png)
+ ![Shuffling & sorting](/assets/images/post/2017-05-08/shuffling-sorting.png)
 
  - 셔플링 : 맵 태스크가 종료되면 그때 리듀스 태스크들이 자신에게 해당하는 파티션의 데이터만 읽어가게 되는데 이때는 RPC등을 통하는 것이 아니라 그냥 HTTP를 통해 읽습니다. 이 과정을 셔플링이라한다.
  - 셔플링이 섞는 과정인줄알았는데 알고보니 단순 데이터 복사.
@@ -338,7 +338,7 @@ public class HashPartitioner<K, V> extends Partitioner<K, V>{
  - 리듀스 테스크를 만약 0으로 정해준다면 맵퍼들의 결과로만 결과가 출력이 되어 결과 파일은 part-m-xxxx로 나오게 될것이다.
 
 ## 출력 포맷
- ![output format](/assets/post/2017-05-08/output-format.png)
+ ![output format](/assets/images/post/2017-05-08/output-format.png)
 
 
 ### TextOutputFormat
