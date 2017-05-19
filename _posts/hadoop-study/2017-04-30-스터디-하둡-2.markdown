@@ -12,7 +12,7 @@ navigation: True
 
 ## Chapter 02 MapReduce
 
- ![mapreduce work](/assets/posts/res/2017-04-30/mapreduce-work.png)
+ ![mapreduce work](/assets/images/post/2017-04-30/mapreduce-work.png)
  
  - 맵리듀스는 데이터 처리를 위한 프로그래밍 모델이다.
  - 하둡은 다양한 언어로 쓰인 맵 리듀스 프로그램을 구동시킬 수 있다.
@@ -36,7 +36,7 @@ navigation: True
 
 ### 하둡 구성 요소
 
- ![hadoop element](/assets/posts/res/2017-04-30/hadoop-work.png)
+ ![hadoop element](/assets/images/post/2017-04-30/hadoop-work.png)
 
  - 네임노드 = 마스터, HDFS 1.x 에는 단하나만 존재하는 네임노드는 hdfs에 저장되는 각종 파일과 디렉토리들의 메타정보를 관리하고 실제 데이터는 다수의 데이터 노드에 분산저장하는 역할을 담당한다.
  - 네임노드 메타 정보 = 메타정보는 저장된 파일의 이름, 디렉토리, 복제본 수, 블록 ID, 블록별 저장 데이터 노드 이름 과 같은 정보들을 메타정보 메모리에 유지합니다.
@@ -52,11 +52,9 @@ navigation: True
  
 ## HDFS 특징
 
-![hdfs working](/assets/posts/res/2017-04-30/hdfsworking.gif)
+![hdfs working](/assets/images/post/2017-04-30/hdfsworking.gif)
 
- - [hdfs상세동작 공홈][hdfs]
-
-[hdfs]: https://hadoop.apache.org/docs/r1.2.1/hdfs_design.html
+ - [hdfs상세동작 공홈](https://hadoop.apache.org/docs/r1.2.1/hdfs_design.html)
 
  - hdfs 는 1버전 기준으로 전체시스템에 하나의 네임노드가 주어진다. 2버전에는 하나의 네임노드가 아니라 다수의 네임노드를 설정할 수 있다. 
  - 파일을 여러개의 블록으로 지정할 수 있습니다. 기본64MB, 프로덕션에서는 128MB 를 많이 사용합니다.
@@ -72,13 +70,11 @@ navigation: True
 
 
 ### hdfs의 읽기 쓰기 
- - [hdfs의 읽기 쓰기 상세설명][hdfsReadWrite]
-
-[hdfsReadWrite]: http://www.guru99.com/learn-hdfs-a-beginners-guide.html
+ - [hdfs의 읽기 쓰기 상세설명](http://www.guru99.com/learn-hdfs-a-beginners-guide.html)
 
 ### hdfs의 읽기
  
- ![hdfs read](/assets/posts/res/2017-04-30/hdfs-read.png)
+ ![hdfs read](/assets/images/post/2017-04-30/hdfs-read.png)
 
 
  1. hdfs클라이언트는 먼저 네임노드와 통신하여 자신이 읽고자 하는 파일의 이름을 넘깁니다.
@@ -88,7 +84,7 @@ navigation: True
  
 ### hdfs의 쓰기
 
- ![hdfs write](/assets/posts/res/2017-04-30/hdfs-write.png)
+ ![hdfs write](/assets/images/post/2017-04-30/hdfs-write.png)
  
 1. HDFS 클라이언트는 먼저 파일을 로컬 파일 시스템에 생성하고 데이터를 hdfs 에 쓰기 시작합니다.
  2. 파일 생성이 끝나거나 크기가 데이터블록의 크기(기본 64MB)보다 크다면 이 때 네임노드와 통신합니다. 네임노드는 이 때 파일 생성 요청을 메모리 메타정보와 editlog에 기록합니다. 
@@ -177,7 +173,7 @@ navigation: True
  - 웹 인터페이스
 
 ### 잡 스케쥴러 Job Scheduler
-![Job scheduler](/assets/posts/res/2017-04-30/job-scheduler.png)
+![Job scheduler](/assets/images/post/2017-04-30/job-scheduler.png)
  1. 잡 스케줄러는 클러스터에 여러 잡을 동시에 실행하게 합니다.
  2. TaskScheduler클래스를 구현할 수 있다면 잡 스케줄러를 만들 수 있다.
  3. FIFO Scheduler, Capacity Scheduler, Fair Scheduler

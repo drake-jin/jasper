@@ -8,8 +8,11 @@ subclass: 'post tag-hadoop'
 categories: 'drakejin'
 navigation: True
 ---
-[데이터 공작소] 하둡공부하기전 Intro 어떻게 공부할것인가! 참고서적 (Do it 하둡 프로그래밍 및 Hadoop완벽가이드 책을 참고하였습니다.
+[데이터 공작소] 하둡공부하기전 Intro 어떻게 공부할것인가! 
+(참고서적은 Do it 하둡 프로그래밍 및 Hadoop완벽가이드 책을 참고하였습니다.)
 
+
+ - [직접 작성한 소스코드 drake-jin@git/hadoop-study](https://github.com/drake-jin/hadoop-study)
 ## Hadoop 완벽가이드
  - 출판사 : O'Reilly , 한빛미디어
  - 저자 : 톰화이트 
@@ -17,16 +20,13 @@ navigation: True
  - 한줄 평 : 챕터2 예제 돌릴 데이터 어디서 다운받냐구요!!! 
 으아아아아아악!!!!!!!!!!!!!!!!!!!!!!!!!!!! ( 답변을 받았다. )
  - 챕터 2 예제는 실습예제에 링크를 걸어 놓았습니다. 참고해주세용. 
-
-## 소스 위치
- - [직접 작성한 소스코드 drake-jin@git/hadoop-study][github]
+ - 소스 예제 
+    - [Hadoop 완벽가이드의 Chapter 2예제](ftp://ftp.ncdc.noaa.gov/pub/data/noaa/)
 
 ## Do it 하둡프로그래밍
  - 출판사 : 이지스퍼블리싱
  - 지음 : 한기용
  - 한줄 평: 쉽게 따라할 수 있어서 좋습니다. 꼭 사세요. 
- 
-## 책 소개
  - 2장은 맵리듀스를 소개
  - 3장은 하둡의 파일 시스템 
  - 4장은 하둡 I/O에 대해서
@@ -36,26 +36,16 @@ navigation: True
  - 11,12 장은 HDFS와 맵 리듀스 기반의 분석 플랫폼인 피그와 하이브를 설명한다.
  - 13,14,15 는 HBase, Zookeeper, Sqoop
  - 16장은 사례 연구들을 모아 놓았다.
+ - 소스 예제  
+    - [두잇 하둡프로그래밍:소스와 프로젝트 파일](https://s3.amazonaws.com/hadoopkr/source.tar.gz)
+    - [두잇 하둡프로그래밍:소스와 프로젝트 파일](https://files.secureserver.net/public_file.php?page_action=display_file&hash=0sMasskTwJkow7)
+    - [두잇 하둡프로그래밍:학습 데이터 파일](https://s3.amazonaws.com/hadoopkr/data.tar.gz)
 
+## 유용한 사이트..
+ - [데이터 마이닝 및 딥러닝 등등 kaggle.com](http://www.kaggle.com)
 
-## 실습예제
- - [두잇 하둡프로그래밍:소스와 프로젝트 파일][두잇 하둡프로그래밍:소스와 프로젝트 파일]:
- - [두잇 하둡프로그래밍:소스와 프로젝트 파일][두잇 하둡프로그래밍:소스2]
- - [두잇 하둡프로그래밍:학습 데이터 파일][두잇 하둡프로그래밍:학습 데이터 파일]
- - [Hadoop 완벽가이드의 Chapter 2예제][Hadoop 완벽가이드의 Chapter 2예제]
+## 책을 실습하면서 겪은 트러블 슈팅
+ - 시스템 껏다 키면 /tmp이하 디렉토리 날라가니까... [참고하세요.](http://egloos.zum.com/entireboy/v/4821605)
 
-## 참고 사이트
- - [데이터 마이닝 및 딥러닝 등등 kaggle.com][데이터 마이닝 및 딥러닝 등등 kaggle.com]
-
-## 에러 극복
- - 시스템 껏다 키면 /tmp이하 디렉토리 날라가니까...   [참고하세요.][참고하세요.]
-
-[github]: https://github.com/drake-jin/hadoop-study
-[두잇 하둡프로그래밍:소스와 프로젝트 파일]: https://s3.amazonaws.com/hadoopkr/source.tar.gz
-[두잇 하둡프로그래밍:소스2]: https://files.secureserver.net/public_file.php?page_action=display_file&hash=0sMasskTwJkow7
-[두잇 하둡프로그래밍:학습 데이터 파일]: (https://s3.amazonaws.com/hadoopkr/data.tar.gz
-[Hadoop 완벽가이드의 Chapter 2예제]: ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
-[데이터 마이닝 및 딥러닝 등등 kaggle.com]: http://www.kaggle.com
-[참고하세요.]: http://egloos.zum.com/entireboy/v/4821605
 
 

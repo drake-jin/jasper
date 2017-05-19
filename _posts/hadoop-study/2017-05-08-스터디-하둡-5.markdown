@@ -12,13 +12,11 @@ navigation: True
 
 ## Chapter 05
 Chapter04의 WordCount소스에 사용된 MapReduce소스에 대해서 분석해보는 챕터입니다.
- - [하둡의 작동방법에 대해 상세히 나와있음 ][guide]
-
-[guide]: https://autofei.wordpress.com/2010/06/27/oreilly-hadoop-the-definitive-guide-06-2009/
+ - [하둡의 작동방법에 대해 상세히 나와있음 ](https://autofei.wordpress.com/2010/06/27/oreilly-hadoop-the-definitive-guide-06-2009)
 
 
-![mapreduce](/assets/posts/res/2017-05-08/mapreduce.jpg)
-![mapreduce-process](/assets/posts/res/2017-05-08/mapreduce-process.png)
+![mapreduce](/assets/images/post/2017-05-08/mapreduce.jpg)
+![mapreduce-process](/assets/images/post/2017-05-08/mapreduce-process.png)
 
 
 ## 차례 
@@ -164,7 +162,7 @@ public class ItemFreq implements Writable{
 
 
 ## 입력 포맷의 역할
- ![input format ](/assets/posts/res/2017-05-08/input-format.png)
+ ![input format ](/assets/images/post/2017-05-08/input-format.png)
  - job.setInputFormatClass() 에 해당되는 내용.
 
 ### TextInputFormat
@@ -215,17 +213,17 @@ public class ItemFreq implements Writable{
 
  1. 리듀스가 하나일경우
 
-![one reduce](/assets/posts/res/2017-05-08/one-reduce.png)
+![one reduce](/assets/images/post/2017-05-08/one-reduce.png)
 
  2. 리듀스가 두개일 경우
 
 
-![two reduce](/assets/posts/res/2017-05-08/two-reduce.png)
+![two reduce](/assets/images/post/2017-05-08/two-reduce.png)
 
 
  3. 리듀스가 없을 경우
 
-![none reduce](/assets/posts/res/2017-05-08/none-reduce.png)
+![none reduce](/assets/images/post/2017-05-08/none-reduce.png)
 
   
 ### getSplits의 파일 조각 나누는 방식
@@ -296,7 +294,7 @@ public class HashPartitioner<K, V> extends Partitioner<K, V>{
 
 ### 셔플링
  
- ![Shuffling & sorting](/assets/posts/res/2017-05-08/shuffling-sorting.png)
+ ![Shuffling & sorting](/assets/post/2017-05-08/shuffling-sorting.png)
 
  - 셔플링 : 맵 태스크가 종료되면 그때 리듀스 태스크들이 자신에게 해당하는 파티션의 데이터만 읽어가게 되는데 이때는 RPC등을 통하는 것이 아니라 그냥 HTTP를 통해 읽습니다. 이 과정을 셔플링이라한다.
  - 셔플링이 섞는 과정인줄알았는데 알고보니 단순 데이터 복사.
@@ -340,7 +338,7 @@ public class HashPartitioner<K, V> extends Partitioner<K, V>{
  - 리듀스 테스크를 만약 0으로 정해준다면 맵퍼들의 결과로만 결과가 출력이 되어 결과 파일은 part-m-xxxx로 나오게 될것이다.
 
 ## 출력 포맷
- ![output format](/assets/posts/res/2017-05-08/output-format.png)
+ ![output format](/assets/post/2017-05-08/output-format.png)
 
 
 ### TextOutputFormat

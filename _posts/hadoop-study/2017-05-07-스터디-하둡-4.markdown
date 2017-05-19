@@ -14,9 +14,7 @@ navigation: True
  WordCount 에 대해서 배워본다. 이번장은 소스에 주석으로 진행하였으니 소스를 참고하여 주시기 바랍니다.
 
 ## 소스 위치
- - [소스가 있는곳][source]
-
-[source]: https://github.com/drake-jin/hadoop-study/tree/master/week04/wordcount/wordcount/src/wc/MyWordCount.java
+ - [소스가 있는곳](https://github.com/drake-jin/hadoop-study/tree/master/week04/wordcount/wordcount/src/wc/MyWordCount.java)
 
 ## 실행 
 
