@@ -56,6 +56,10 @@ current: me
  - [git@drake-jin/jasper](https://github.com/drake-jin/jasper)
    - 기존의 jasper-jekyll에 버그가 너무 많지만... 이뻐서 어기적 어기적 쓰는대
    - 버그와 로직 장애부분에서 직접 수정해서 issue로 달아서 해결방법도 제시함.  
+ - [git@drake-jin/pi-email-transmission](https://pypi.python.org/pypi/pet)
+   - 나도 한번 오픈소스 하자! 하면서 만들어보았지만.... (아무도 써주지 않고... 눈물이...)
+   - 커밋이력이나 머지내용도 전부 영어로쓰고 README.md도 영어로 남겨보았지만.. 아무도 써주지않고...
+ 
 
 ### 현재 진행중인 활동 
 
