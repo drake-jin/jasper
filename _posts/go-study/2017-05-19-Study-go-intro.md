@@ -193,6 +193,9 @@ PHP에서도 역시 가능하다. 다만 기본 패키지들 중에서는 성능
  - [pyrasis.com 의 빠르게 만나는 Go](http://pyrasis.com/go.html)
  - [golangkorea.github.io](https://golangkorea.github.io)
  - [아라한사씨의 깃헙](https://github.com/arahansa/golkorea)
+ - [https://go-tour-kr.appstop.com/#1](https://go-tour-kr.appspot.com/#1)
+
+
 ## 과제
   1. 언어 자체가 가진 매력? 패러다임? 차이점은 무엇인가?
 
