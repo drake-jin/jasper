@@ -37,25 +37,14 @@
 
     <ul style="padding-top:0px;">
         <h4 class="page-title"> 포스팅 </h4>
-        <li class="nav-fables {% if page.url contains 'tag/hadoop' %} nav-current{% endif %}" 
+        {% for tag in site.data.tags %}
+        <li class="nav-fables {% if page.url contains 'tag/{{ tag.name }}' %} nav-current{% endif %}" 
             role="presentation">
-            <a href="{{ site.baseurl }}tag/hadoop">
-                Hadoop
+            <a href="{{ site.baseurl }}tag/{{ tag.name  }}">
+                {{ tag.name }}
             </a>
         </li>
-        <li class="nav-fables {% if page.url contains 'tag/docker' %} nav-current{% endif %}" 
-            role="presentation">
-            <a href="{{ site.baseurl }}tag/docker">
-                Docker
-            </a>
-        </li>
-        <li class="nav-fables {% if page.url contains 'tag/go' %} nav-current{% endif %}" 
-            role="presentation">
-            <a href="{{ site.baseurl }}tag/go">
-                Go
-            </a>
-        </li>
-
+        {% endfor %}
     </ul>
     <a class="subscribe-button icon-feed" href="{{ site.baseurl }}feed.xml">Subscribe</a>
 </div>

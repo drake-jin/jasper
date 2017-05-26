@@ -10,13 +10,28 @@ current: tag
 <!-- 
     To do list : tags 나 뭐 ... 음.. ... _data 에서 셋팅할 수 있도록 만들어보자
     으아아악 여기에도 직접 .... 이미지를... 때려 넣어 주어야 한다니... 이 새끼야... -->
-{% for tag in site.data.tags %}
-    {% if page.tag == tag.name %}
-        {% assign new_cover='assets/images/post/tags/' | append: tag.name | append: '.png' %}
-        {% assign tag_description=tag.description %}
+{% for tag in post_tags %}
+    {% if page.url contains tag.name %}
+        {% assign new_cover='assets/images/post/tags/'+tag.name+'.png' %}
+        {% assign tag_description=tag.desc %}
         {% break %}
     {% endif %}    
 {% endfor %}
+
+
+{% if page.url contains 'docker' %}
+
+    {% assign new_cover='assets/images/post/tags/docker.png' %}
+    {% assign tag_description='Immutable Infrastructure를 구현해보겠어용!' %}
+
+{% elsif page.url contains 'hadoop' %}
+    {% assign new_cover='assets/images/post/tags/hadoop.png' %}
+    {% assign tag_description='제 HDFS는 튼튼해요 ! ' %}
+
+{% elsif page.url contains 'go' %}
+    {% assign new_cover='assets/images/post/tags/go.png' %}
+    {% assign tag_description='Go 캐릭터가 너무 귀여우엉  뀨' %}
+{% endif %}
 
 
 <!-- < default}} -->
