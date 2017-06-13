@@ -14,6 +14,10 @@
   name: react
   description: '빵빵한 웹 클라이언트를 구축하겠어요!' 
 
+- 
+  name: css
+  description: '웹을 이쁘게! 이쁘게!'
+
 -
   name: review 
   description: '제가 보고 느낀것들을 전달하겠어요!'   
