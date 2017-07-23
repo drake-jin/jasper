@@ -7,7 +7,7 @@ logo: 'assets/images/ghost.png'
 current: tag
 ---
 
-<!-- 
+<!--
     To do list : tags 나 뭐 ... 음.. ... _data 에서 셋팅할 수 있도록 만들어보자
     으아아악 여기에도 직접 .... 이미지를... 때려 넣어 주어야 한다니... 이 새끼야... -->
 {% for tag in post_tags %}
@@ -15,7 +15,7 @@ current: tag
         {% assign new_cover='assets/images/post/tags/'+tag.name+'.png' %}
         {% assign tag_description=tag.desc %}
         {% break %}
-    {% endif %}    
+    {% endif %}
 {% endfor %}
 
 
@@ -31,6 +31,11 @@ current: tag
 {% elsif page.url contains 'go' %}
     {% assign new_cover='assets/images/post/tags/go.png' %}
     {% assign tag_description='Go 캐릭터가 너무 귀여우엉  뀨' %}
+{% endif %}
+
+{% elsif page.url contains 'startup' %}
+    {% assign new_cover='assets/images/post/tags/startup.png' %}
+    {% assign tag_description='신입, 신생 스타트업 생존기' %}
 {% endif %}
 
 

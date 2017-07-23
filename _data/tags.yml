@@ -1,4 +1,8 @@
 -
+  name: startup
+  description: '내 신입 라이프가 이렇게 고생스러울리 없어!'   
+
+-
   name: hadoop
   description: 'Immutable Infrastructure를 구현해보겠어용!'
 
@@ -12,14 +16,12 @@
 
 -
   name: react
-  description: '빵빵한 웹 클라이언트를 구축하겠어요!' 
+  description: '빵빵한 웹 클라이언트를 구축하겠어요!'
 
-- 
+-
   name: css
   description: '웹을 이쁘게! 이쁘게!'
 
 -
-  name: review 
-  description: '제가 보고 느낀것들을 전달하겠어요!'   
-
-
+  name: review
+  description: '제가 보고 느낀것들을 전달하겠어요!'
